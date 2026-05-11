@@ -6,9 +6,9 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.saulifeapp.HomeActivity
 import com.example.saulifeapp.R
 import com.example.saulifeapp.databinding.ActivityProfileSetupBinding
+import com.example.saulifeapp.ui.home.HomeFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -63,7 +63,7 @@ class ProfileSetupActivity : AppCompatActivity() {
         }
 
         binding.btnSkip.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
+            startActivity(Intent(this, HomeFragment::class.java))
             finish()
         }
     }
@@ -156,7 +156,7 @@ class ProfileSetupActivity : AppCompatActivity() {
 
                 Toast.makeText(this, "Профиль сохранён", Toast.LENGTH_SHORT).show()
 
-                startActivity(Intent(this, HomeActivity::class.java))
+                startActivity(Intent(this, HomeFragment::class.java))
                 finish()
             }
             .addOnFailureListener { e ->

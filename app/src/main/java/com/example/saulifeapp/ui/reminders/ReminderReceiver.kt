@@ -8,8 +8,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
-import com.example.saulifeapp.HomeActivity
 import com.example.saulifeapp.R
+import com.example.saulifeapp.ui.home.HomeFragment
 
 class ReminderReceiver : BroadcastReceiver() {
 
@@ -32,7 +32,7 @@ class ReminderReceiver : BroadcastReceiver() {
             notificationManager.createNotificationChannel(channel)
         }
 
-        val openIntent = Intent(context, HomeActivity::class.java)
+        val openIntent = Intent(context, HomeFragment::class.java)
         val pendingIntent = PendingIntent.getActivity(
             context,
             reminderId,

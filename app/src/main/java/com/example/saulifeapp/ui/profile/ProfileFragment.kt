@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.example.saulifeapp.LoginRegisterActivity
+import com.example.saulifeapp.LoginActivity
 import com.example.saulifeapp.R
 import com.example.saulifeapp.databinding.FragmentProfileBinding
 import com.example.saulifeapp.utils.AppPreferences
@@ -56,7 +56,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         binding.btnLogout.setOnClickListener {
             auth.signOut()
-            startActivity(Intent(requireContext(), LoginRegisterActivity::class.java))
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
             requireActivity().finishAffinity()
         }
     }
