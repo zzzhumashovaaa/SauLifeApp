@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "847958710029",
+    "project_id": "saulife-acce5",
+    "storage_bucket": "saulife-acce5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847958710029:android:489147efe133efa7d84244",
+        "android_client_info": {
+          "package_name": "com.example.saulifeapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZaFjaUlBRM6o5XUZ2-KBkpZm65ugXAdU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

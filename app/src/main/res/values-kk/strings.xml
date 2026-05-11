@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">SauLife</string>
+    <string name="profile_title">Профиль</string>
+    <string name="default_user">Пайдаланушы</string>
+    <string name="default_initial">П</string>
+    <string name="email_placeholder">email@gmail.com</string>
+    <string name="email_not_set">Email көрсетілмеген</string>
+    <string name="profile_completed">Профиль толтырылған</string>
+    <string name="profile_not_completed">Профиль толық емес</string>
+    <string name="edit_profile">Профильді өңдеу</string>
+    <string name="profile_my_treatment">Менің емім\nКурстар, дәрілер және еске салғыштар        →</string>
+    <string name="profile_notifications">Хабарламалар 🔔\nДәрі қабылдау және жүйелік еске салғыштар</string>
+    <string name="profile_history">Тарих 🕘\nТапсырыс, іздеу және әрекеттер тарихы</string>
+    <string name="profile_settings">Баптаулар ⚙️\nТіл, тақырып, құпиялық</string>
+    <string name="logout">Аккаунттан шығу</string>
+    <string name="settings_title">Баптаулар</string>
+    <string name="settings_language">Қолданба тілі</string>
+    <string name="settings_theme">Қолданба тақырыбы</string>
+    <string name="choose_language">Тілді таңдаңыз</string>
+    <string name="choose_theme">Тақырыпты таңдаңыз</string>
+    <string name="language_kazakh">Қазақша</string>
+    <string name="language_russian">Русский</string>
+    <string name="language_english">English</string>
+    <string name="theme_system">Жүйе бойынша</string>
+    <string name="theme_light">Жарық</string>
+    <string name="theme_dark">Қараңғы</string>
+    <string name="language_saved_title">Тіл сақталды</string>
+    <string name="language_saved_message">Тіл толық қолданылуы үшін қолданбаны қайта іске қосу керек. Қазір экран жаңартылады.</string>
+    <string name="ok">ОК</string>
+</resources>
