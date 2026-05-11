@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="300dp"
+        android:layout_height="170dp"
+        android:layout_marginEnd="14dp"
+        app:cardBackgroundColor="#D9CEFF"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="0dp">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+        <TextView
+                android:id="@+id/textNewsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MEDICAL NEWS"
+                android:textColor="#171725"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+        <TextView
+                android:id="@+id/textNewsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="#171725"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        <TextView
+                android:id="@+id/textNewsPreview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="6dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="4"
+                android:textColor="#3A3A3A"
+                android:textSize="13sp" />
+
+        <Button
+                android:id="@+id/btnReadNews"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:backgroundTint="#6147F5"
+                android:text="Читать"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

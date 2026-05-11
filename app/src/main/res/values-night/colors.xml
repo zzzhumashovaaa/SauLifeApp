@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_main">#6A3DFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray_text">#A7A7A7</color>
+    <color name="gray_light">#2A2A2E</color>
+    <color name="gray_bg">#111113</color>
+
+    <!-- Home dark theme colors -->
+    <color name="home_bg">#111827</color>
+    <color name="home_card_bg">#1F2937</color>
+    <color name="home_soft_bg">#253244</color>
+    <color name="home_primary_card">#0F8F5C</color>
+    <color name="home_accent">#34D399</color>
+    <color name="home_discount_bg">#18382A</color>
+    <color name="home_sos_bg">#3A1F23</color>
+    <color name="home_text_primary">#F9FAFB</color>
+    <color name="home_text_secondary">#CBD5E1</color>
+    <color name="home_text_muted">#94A3B8</color>
+
+    <!-- Treatment dark theme colors -->
+    <color name="treatment_bg">#111113</color>
+    <color name="treatment_text_primary">#FFFFFF</color>
+    <color name="treatment_text_secondary">#9A9A9A</color>
+    <color name="treatment_card_bg">#1E1E22</color>
+    <color name="treatment_chip_bg">#30283F</color>
+    <color name="treatment_chip_text">#B99BFF</color>
+    <color name="treatment_button_bg">#242428</color>
+    <color name="treatment_button_icon">#FFFFFF</color>
+    <color name="treatment_icon_bg">#2D253D</color>
+
+    <color name="profile_bg">#111113</color>
+    <color name="profile_card">#1E1E22</color>
+    <color name="profile_text_primary">#FFFFFF</color>
+    <color name="profile_text_secondary">#A1A1AA</color>
+    <color name="profile_border">#2F3037</color>
+    <color name="profile_primary">#B99BFF</color>
+    <color name="profile_primary_soft">#30283F</color>
+    <color name="profile_success">#86EFAC</color>
+    <color name="profile_success_soft">#123524</color>
+</resources>

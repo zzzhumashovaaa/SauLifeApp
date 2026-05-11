@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">SauLife</string>
+    <string name="profile_title">Profile</string>
+    <string name="default_user">User</string>
+    <string name="default_initial">U</string>
+    <string name="email_placeholder">email@gmail.com</string>
+    <string name="email_not_set">Email is not set</string>
+    <string name="profile_completed">Profile completed</string>
+    <string name="profile_not_completed">Profile is incomplete</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="profile_my_treatment">My treatment\nCourses, medicines and reminders        →</string>
+    <string name="profile_notifications">Notifications 🔔\nMedicine reminders and system alerts</string>
+    <string name="profile_history">History 🕘\nOrders, searches and activity history</string>
+    <string name="profile_settings">Settings ⚙️\nLanguage, theme, privacy</string>
+    <string name="logout">Log out</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_language">App language</string>
+    <string name="settings_theme">App theme</string>
+    <string name="choose_language">Choose language</string>
+    <string name="choose_theme">Choose theme</string>
+    <string name="language_kazakh">Қазақша</string>
+    <string name="language_russian">Русский</string>
+    <string name="language_english">English</string>
+    <string name="theme_system">System default</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="language_saved_title">Language saved</string>
+    <string name="language_saved_message">Restart the app to fully apply the language. This screen will refresh now.</string>
+    <string name="ok">OK</string>
+</resources>

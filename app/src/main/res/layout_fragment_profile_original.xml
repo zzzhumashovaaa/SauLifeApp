@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F6F7FB">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:paddingBottom="110dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Профиль"
+                    android:textColor="#111827"
+                    android:textSize="34sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="20dp" />
+
+            <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone" />
+
+            <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="28dp"
+                    app:cardElevation="4dp"
+                    app:strokeColor="#E2E8F0"
+                    app:strokeWidth="1dp"
+                    android:layout_marginBottom="18dp">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="28dp">
+
+                    <TextView
+                            android:id="@+id/tvInitials"
+                            android:layout_width="96dp"
+                            android:layout_height="96dp"
+                            android:gravity="center"
+                            android:text="П"
+                            android:textColor="#5B3FFF"
+                            android:textSize="34sp"
+                            android:textStyle="bold"
+                            android:background="#EEF2FF"
+                            android:layout_marginBottom="18dp" />
+
+                    <TextView
+                            android:id="@+id/tvName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Пользователь"
+                            android:textColor="#111827"
+                            android:textSize="28sp"
+                            android:textStyle="bold" />
+
+                    <TextView
+                            android:id="@+id/tvEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="email@gmail.com"
+                            android:textColor="#6B7280"
+                            android:textSize="16sp"
+                            android:layout_marginTop="6dp" />
+
+                    <TextView
+                            android:id="@+id/tvProfileStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Профиль заполнен"
+                            android:textColor="#15803D"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:background="#ECFDF3"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp"
+                            android:paddingTop="9dp"
+                            android:paddingBottom="9dp"
+                            android:layout_marginTop="18dp" />
+
+                    <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardEditProfile"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:layout_marginTop="24dp"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="0dp"
+                            app:strokeColor="#D7DEF0"
+                            app:strokeWidth="1dp">
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp">
+
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Редактировать профиль"
+                                    android:textColor="#111827"
+                                    android:textSize="19sp"
+                                    android:textStyle="bold" />
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="→"
+                                    android:textColor="#6B7280"
+                                    android:textSize="22sp" />
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardTreatment"
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp"
+                    android:layout_marginBottom="14dp"
+                    app:cardCornerRadius="22dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="#E5E7EB"
+                    app:strokeWidth="1dp">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:padding="22dp"
+                        android:text="Моё лечение\nКурсы, препараты и напоминания        →"
+                        android:textColor="#111827"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardNotifications"
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp"
+                    android:layout_marginBottom="14dp"
+                    app:cardCornerRadius="22dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="#E5E7EB"
+                    app:strokeWidth="1dp">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:padding="22dp"
+                        android:text="Уведомления 🔔\nНапоминания о лекарствах и системные уведомления"
+                        android:textColor="#111827"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp"
+                    android:layout_marginBottom="14dp"
+                    app:cardCornerRadius="22dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="#E5E7EB"
+                    app:strokeWidth="1dp">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:padding="22dp"
+                        android:text="История 🕘\nИстория заказов, поисков и действий"
+                        android:textColor="#111827"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardSettings"
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp"
+                    android:layout_marginBottom="22dp"
+                    app:cardCornerRadius="22dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="#E5E7EB"
+                    app:strokeWidth="1dp">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:padding="22dp"
+                        android:text="Настройки ⚙️\nЯзык, тема, конфиденциальность"
+                        android:textColor="#111827"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <Button
+                    android:id="@+id/btnLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="Выйти из аккаунта"
+                    android:textAllCaps="false"
+                    android:textColor="#5B21FF"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#FFFFFF" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>
