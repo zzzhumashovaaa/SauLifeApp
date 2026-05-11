@@ -40,7 +40,7 @@ class OnboardingActivity : AppCompatActivity() {
             if (currentItem < onboardingItems.lastIndex) {
                 binding.viewPagerOnboarding.currentItem = currentItem + 1
             } else {
-                startActivity(Intent(this, LoginRegisterActivity::class.java))
+                startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
         }

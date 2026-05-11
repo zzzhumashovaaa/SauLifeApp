@@ -6,27 +6,27 @@ import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.saulifeapp.databinding.ActivityLoginRegisterBinding
+import com.example.saulifeapp.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 
-class LoginRegisterActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLoginRegisterBinding
+    private lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginRegisterBinding.inflate(layoutInflater)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
 
-        binding.btnLogin.setOnClickListener {
-            loginUser()
-        }
-
         binding.btnRegister.setOnClickListener {
             registerUser()
+        }
+
+        binding.textGoLogin.setOnClickListener {
+            finish()
         }
     }
 
@@ -63,31 +63,6 @@ class LoginRegisterActivity : AppCompatActivity() {
             }
     }
 
-    private fun loginUser() {
-        val email = binding.editEmail.text.toString().trim()
-        val password = binding.editPassword.text.toString().trim()
-
-        if (!validateInput(email, password)) return
-
-        showLoading(true)
-
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                showLoading(false)
-
-                if (task.isSuccessful) {
-                    Toast.makeText(this, "Вход выполнен", Toast.LENGTH_SHORT).show()
-                    goToHome()
-                } else {
-                    Toast.makeText(
-                        this,
-                        task.exception?.localizedMessage ?: "Ошибка входа",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-            }
-    }
-
     private fun validateInput(email: String, password: String): Boolean {
         if (email.isEmpty()) {
             binding.editEmail.error = "Введите email"
@@ -118,7 +93,6 @@ class LoginRegisterActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-        binding.btnLogin.isEnabled = !isLoading
         binding.btnRegister.isEnabled = !isLoading
     }
 

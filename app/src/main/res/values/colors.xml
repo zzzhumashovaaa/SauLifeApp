@@ -6,6 +6,8 @@
     <color name="gray_text">#A7A7A7</color>
     <color name="gray_light">#E3E3E3</color>
     <color name="gray_bg">#F7F7F7</color>
+    <color name="teal_dark">#0A8F7A</color>
+    <color name="text_gray">#6B7280</color>
 
     <!-- Home theme colors -->
     <color name="home_bg">#F6F8FB</color>
