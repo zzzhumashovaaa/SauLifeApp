@@ -28,7 +28,7 @@ class CurrentMedicineAdapter(
                     "Уақыты көрсетілмеген"
 
             binding.textStatus.text =
-                if (medicine.isCurrent)
+                if (medicine.current)
                     "Белсенді"
                 else
                     "Аяқталған"

@@ -19,7 +19,7 @@
             android:id="@+id/topBar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingTop="38dp"
+            android:paddingTop="20dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:orientation="horizontal"
@@ -31,7 +31,7 @@
         <ImageButton
                 android:id="@+id/btnBack"
                 android:layout_width="30dp"
-                android:layout_height="44dp"
+                android:layout_height="30dp"
                 android:src="@drawable/ic_back"
                 app:tint="#FFFFFF"
                 android:background="@android:color/transparent" />
@@ -44,7 +44,7 @@
                 android:gravity="center"
                 android:text="Наведите камеру на название лекарства"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
     </LinearLayout>
@@ -86,11 +86,11 @@
                 android:id="@+id/btnCapture"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/bg_button"
+                android:background="@drawable/bg_button_taken"
                 android:text="Сканировать"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
         <Button
@@ -98,11 +98,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="12dp"
-                android:background="@drawable/bg_button"
+                android:background="@drawable/bg_button_taken"
                 android:text="Загрузить фото"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
     </LinearLayout>

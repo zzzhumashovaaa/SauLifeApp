@@ -3,171 +3,330 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:background="#F7F9FC"
+        android:clipToPadding="false">
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_bottom_sheet"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="28dp">
 
         <View
                 android:layout_width="45dp"
                 android:layout_height="5dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="22dp"
                 android:background="@drawable/bg_sheet_handle" />
 
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Добавить лекарство"
-                android:textColor="#222222"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="20dp"
-                android:text="Заполните данные, чтобы сохранить лекарство в домашней аптечке"
-                android:textColor="#8A8A8A"
-                android:textSize="14sp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Название лекарства">
-
-            <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etMedicineName"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:inputType="textCapWords" />
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvSuggestions"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:hint="Дозировка, например 500mg">
-
-            <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etDosage"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:hint="Количество">
-
-            <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etQuantity"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:inputType="number" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:hint="Срок годности, 2026-12-01">
-
-            <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etExpiryDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:inputType="date" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:hint="Категория, Vitamins / Pain relief">
-
-            <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etCategory"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:inputType="textCapWords" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <CheckBox
-                android:id="@+id/cbCurrent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:text="Я сейчас принимаю это лекарство"
-                android:textColor="#222222"
-                android:textSize="15sp" />
-
         <LinearLayout
-                android:id="@+id/layoutCurrentTreatmentFields"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
+            <View
+                    android:layout_width="4dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/bg_accent_bar" />
+
+            <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="Сколько раз в день?">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etTimesPerDay"
+                <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:inputType="number" />
-            </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_height="wrap_content"
+                        android:text="Дәрі қосу"
+                        android:textColor="#1A2B2B"
+                        android:textSize="26sp"
+                        android:fontFamily="sans-serif-black"
+                        android:letterSpacing="-0.02" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:hint="Время приёма, например 09:00">
-
-                <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etTime"
+                <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Дәріні үй аптечкасына сақтаңыз"
+                        android:textColor="#8FA8A6"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif" />
+
+            </LinearLayout>
 
         </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Негізгі ақпарат"
+                        android:textColor="#1A2B2B"
+                        android:textSize="17sp"
+                        android:fontFamily="sans-serif-black" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:hint="Название лекарства"
+                        app:boxCornerRadiusTopStart="16dp"
+                        app:boxCornerRadiusTopEnd="16dp"
+                        app:boxCornerRadiusBottomStart="16dp"
+                        app:boxCornerRadiusBottomEnd="16dp"
+                        app:boxStrokeColor="#0F9B8E"
+                        app:hintTextColor="#0F9B8E">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etMedicineName"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:inputType="textCapWords"
+                            android:textColor="#1A2B2B"
+                            android:textSize="15sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvSuggestions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:hint="Дозировка, например 500mg"
+                        app:boxCornerRadiusTopStart="16dp"
+                        app:boxCornerRadiusTopEnd="16dp"
+                        app:boxCornerRadiusBottomStart="16dp"
+                        app:boxCornerRadiusBottomEnd="16dp"
+                        app:boxStrokeColor="#0F9B8E"
+                        app:hintTextColor="#0F9B8E">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etDosage"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:inputType="text"
+                            android:textColor="#1A2B2B"
+                            android:textSize="15sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="7dp"
+                            android:hint="Количество"
+                            app:boxCornerRadiusTopStart="16dp"
+                            app:boxCornerRadiusTopEnd="16dp"
+                            app:boxCornerRadiusBottomStart="16dp"
+                            app:boxCornerRadiusBottomEnd="16dp"
+                            app:boxStrokeColor="#0F9B8E"
+                            app:hintTextColor="#0F9B8E">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etQuantity"
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:inputType="number"
+                                android:textColor="#1A2B2B"
+                                android:textSize="15sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="7dp"
+                            android:hint="Категория"
+                            app:boxCornerRadiusTopStart="16dp"
+                            app:boxCornerRadiusTopEnd="16dp"
+                            app:boxCornerRadiusBottomStart="16dp"
+                            app:boxCornerRadiusBottomEnd="16dp"
+                            app:boxStrokeColor="#0F9B8E"
+                            app:hintTextColor="#0F9B8E">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etCategory"
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:inputType="textCapWords"
+                                android:textColor="#1A2B2B"
+                                android:textSize="15sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:hint="Срок годности, 2026-12-01"
+                        app:boxCornerRadiusTopStart="16dp"
+                        app:boxCornerRadiusTopEnd="16dp"
+                        app:boxCornerRadiusBottomStart="16dp"
+                        app:boxCornerRadiusBottomEnd="16dp"
+                        app:boxStrokeColor="#0F9B8E"
+                        app:hintTextColor="#0F9B8E">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etExpiryDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:inputType="date"
+                            android:textColor="#1A2B2B"
+                            android:textSize="15sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                <CheckBox
+                        android:id="@+id/cbCurrent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Я сейчас принимаю это лекарство"
+                        android:textColor="#1A2B2B"
+                        android:textSize="15sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:buttonTint="#0F9B8E" />
+
+                <LinearLayout
+                        android:id="@+id/layoutCurrentTreatmentFields"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Қабылдау кестесі"
+                            android:textColor="#1A2B2B"
+                            android:textSize="16sp"
+                            android:fontFamily="sans-serif-black" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:hint="Сколько раз в день?"
+                            app:boxCornerRadiusTopStart="16dp"
+                            app:boxCornerRadiusTopEnd="16dp"
+                            app:boxCornerRadiusBottomStart="16dp"
+                            app:boxCornerRadiusBottomEnd="16dp"
+                            app:boxStrokeColor="#0F9B8E"
+                            app:hintTextColor="#0F9B8E">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etTimesPerDay"
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:inputType="number"
+                                android:textColor="#1A2B2B"
+                                android:textSize="15sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:hint="Время приёма, например 09:00"
+                            app:boxCornerRadiusTopStart="16dp"
+                            app:boxCornerRadiusTopEnd="16dp"
+                            app:boxCornerRadiusBottomStart="16dp"
+                            app:boxCornerRadiusBottomEnd="16dp"
+                            app:boxStrokeColor="#0F9B8E"
+                            app:hintTextColor="#0F9B8E">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etTime"
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:inputType="text"
+                                android:textColor="#1A2B2B"
+                                android:textSize="15sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSaveMedicine"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="22dp"
                 android:text="Сохранить"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                app:backgroundTint="#5B3DF5"
-                app:cornerRadius="18dp" />
+                android:fontFamily="sans-serif-black"
+                app:backgroundTint="#0F9B8E"
+                app:cornerRadius="18dp"
+                app:elevation="0dp" />
 
     </LinearLayout>
 

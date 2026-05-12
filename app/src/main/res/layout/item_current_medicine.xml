@@ -2,87 +2,117 @@
 <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="210dp"
+        android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_marginEnd="14dp"
-        app:cardCornerRadius="26dp"
-        app:cardElevation="4dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
         app:cardBackgroundColor="@color/white">
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="18dp">
+            android:padding="16dp">
 
+        <!-- Small top accent -->
+        <View
+                android:layout_width="34dp"
+                android:layout_height="3dp"
+                android:background="#0F9B8E"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="#0F9B8E" />
+
+        <!-- Icon -->
         <FrameLayout
-                android:layout_width="46dp"
-                android:layout_height="46dp"
-                android:background="@drawable/bg_medicine_icon">
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="6dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/bg_teal_circle">
 
             <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_medicine"
-                    app:tint="@color/treatment_text_primary" />
+                    app:tint="#0F9B8E" />
         </FrameLayout>
 
+        <!-- Status -->
+        <TextView
+                android:id="@+id/textStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="4dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:background="@drawable/bg_teal_badge"
+                android:text="Белсенді"
+                android:textColor="#0F9B8E"
+                android:textSize="10sp"
+                android:fontFamily="sans-serif-medium" />
+
+        <!-- Medicine name -->
         <TextView
                 android:id="@+id/textMedicineName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:maxLines="1"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:maxLines="2"
                 android:ellipsize="end"
                 android:text="Paracetamol"
-                android:textColor="@color/treatment_text_primary"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+                android:textColor="#162B2B"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-black" />
 
+        <!-- Dosage -->
         <TextView
                 android:id="@+id/textDosage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:text="500 mg"
-                android:textColor="@color/treatment_text_secondary"
-                android:textSize="13sp" />
-
-        <TextView
-                android:id="@+id/textTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:text="Келесі: 21:00"
-                android:textColor="@color/treatment_text_primary"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-        <TextView
-                android:id="@+id/textQuantity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Қалды: 12"
-                android:textColor="@color/treatment_text_secondary"
-                android:textSize="13sp" />
-
-        <TextView
-                android:id="@+id/textStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:background="@drawable/bg_button"
-                android:text="Белсенді"
-                android:textColor="@color/white"
+                android:text="500 mg"
+                android:textColor="#8FA8A6"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:fontFamily="sans-serif-medium" />
+
+
+
+        <!-- Bottom info block -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="2dp"
+                android:gravity="center"
+                android:layout_marginTop="4dp">
+
+            <TextView
+                    android:id="@+id/textTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="21:00"
+                    android:textColor="#162B2B"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-black" />
+
+            <TextView
+                    android:id="@+id/textQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:text="12 таблетка"
+                    android:textColor="#8FA8A6"
+                    android:textSize="10sp"
+                    android:fontFamily="sans-serif-medium" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

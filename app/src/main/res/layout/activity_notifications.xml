@@ -1,35 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.core.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#F5F7FB"
-        android:padding="20dp">
+        android:background="#F7F9FC"
+        android:fillViewport="true">
 
-    <ImageView
-            android:id="@+id/btnBack"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_back"
-            app:tint="#0F172A" />
-
-    <TextView
-            android:layout_width="wrap_content"
+    <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Уведомления"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="#0F172A" />
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="36dp"
+            android:paddingBottom="32dp">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Пока уведомлений нет"
-            android:textSize="15sp"
-            android:textColor="#64748B" />
+        <!-- TOP BAR -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-</LinearLayout>
+            <androidx.cardview.widget.CardView
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    app:cardCornerRadius="18dp"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardElevation="0dp">
+
+                <ImageButton
+                        android:id="@+id/btnBack"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_back"
+                        app:tint="#000000"
+                        android:background="@android:color/transparent" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="16dp"
+                    android:text="Уведомления"
+                    android:textColor="#0F172A"
+                    android:textSize="24dp"
+                    android:fontFamily="sans-serif-black" />
+
+        </LinearLayout>
+
+        <!-- FILTER CHIPS -->
+        <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:scrollbars="none">
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <com.google.android.material.chip.Chip
+                        android:id="@+id/chipAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:text="▦  Все"
+                        android:checked="true"
+                        android:checkable="true"
+                        app:checkedIconVisible="false"
+                        app:chipBackgroundColor="#DDF5F2"
+                        android:textColor="#0F766E" />
+
+                <com.google.android.material.chip.Chip
+                        android:id="@+id/chipPills"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:layout_marginStart="8dp"
+                        android:text="💊 Таблетки"
+                        android:checkable="true"
+                        app:checkedIconVisible="false" />
+
+                <com.google.android.material.chip.Chip
+                        android:id="@+id/chipReminders"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:layout_marginStart="8dp"
+                        android:text="⏰ Приём"
+                        android:checkable="true"
+                        app:checkedIconVisible="false" />
+
+                <com.google.android.material.chip.Chip
+                        android:id="@+id/chipHealth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:layout_marginStart="8dp"
+                        android:text="♡ Здоровье"
+                        android:checkable="true"
+                        app:checkedIconVisible="false" />
+
+                <com.google.android.material.chip.Chip
+                        android:id="@+id/chipImportant"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:layout_marginStart="8dp"
+                        android:text="⚠ Важные"
+                        android:checkable="true"
+                        app:checkedIconVisible="false" />
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <!-- ТАБЛЕТКИ -->
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
+                android:text="💊  Таблетки"
+                android:textColor="#0F172A"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-black" />
+
+        <include
+                android:id="@+id/layoutExpiry"
+                layout="@layout/item_notification_expiry" />
+
+        <include
+                android:id="@+id/layoutExpired"
+                layout="@layout/item_notification_expired" />
+
+        <include
+                android:id="@+id/layoutStock"
+                layout="@layout/item_notification_stock" />
+        <!-- ПРИЁМ -->
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="⏰  Напоминания о приёме"
+                android:textColor="#0F172A"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-black" />
+
+        <include
+                android:id="@+id/layoutTakeMedicine"
+                layout="@layout/item_notification_take_medicine" />
+
+        <include
+                android:id="@+id/layoutMissed"
+                layout="@layout/item_notification_missed" />
+        <!-- ЗДОРОВЬЕ -->
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="♡  Здоровье / AI анализ"
+                android:textColor="#0F172A"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-black" />
+
+        <include
+                android:id="@+id/layoutAiWarning"
+                layout="@layout/item_notification_ai_warning" />
+
+        <include
+                android:id="@+id/layoutHealthCheck"
+                layout="@layout/item_notification_health_check" />
+        <!-- ВАЖНЫЕ -->
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="⚠  Срочные / Важные"
+                android:textColor="#0F172A"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-black" />
+
+        <include
+                android:id="@+id/layoutCritical"
+                layout="@layout/item_notification_critical" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="💬  AI чат / Ассистент"
+                android:textColor="#0F172A"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-black" />
+
+        <include
+                android:id="@+id/layoutAiChat"
+                layout="@layout/item_notification_ai_chat" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -9,12 +9,12 @@
             android:id="@+id/fragmentContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="74dp" />
+            android:layout_marginBottom="60dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
-            android:layout_height="74dp"
+            android:layout_height="60dp"
             android:layout_gravity="bottom"
             android:background="@android:color/white"
             app:itemIconTint="@color/bottom_nav_color"
@@ -27,10 +27,10 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="42dp"
+            android:layout_marginBottom="30dp"
             android:contentDescription="Scan"
             android:src="@android:drawable/ic_menu_camera"
-            app:backgroundTint="#5B3DF5"
+            app:backgroundTint="#0F9B8E"
             app:elevation="10dp"
             app:maxImageSize="30dp"
             app:tint="@android:color/white" />

@@ -320,16 +320,16 @@ class EditProfileActivity : AppCompatActivity() {
 
     private fun getCurrentProfileSnapshot(): String {
 
-        val gender = when (binding.radioGroupGender.checkedRadioButtonId) {
-            R.id.radioMale -> "Мужской"
-            R.id.radioFemale -> "Женский"
-            R.id.radioOther -> "Другое"
+        val gender = when {
+            binding.chipMale.isChecked -> "Мужской"
+            binding.chipFemale.isChecked -> "Женский"
+            binding.chipOther.isChecked -> "Другое"
             else -> ""
         }
 
-        val pregnancy = when (binding.radioGroupPregnancy.checkedRadioButtonId) {
-            R.id.radioPregnantYes -> "true"
-            R.id.radioPregnantNo -> "false"
+        val pregnancy = when {
+            binding.chipPregnantYes.isChecked -> "true"
+            binding.chipPregnantNo.isChecked -> "false"
             else -> ""
         }
 
