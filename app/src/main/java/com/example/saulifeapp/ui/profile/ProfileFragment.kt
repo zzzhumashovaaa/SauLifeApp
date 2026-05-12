@@ -22,6 +22,8 @@ import androidx.fragment.app.Fragment
 import com.example.saulifeapp.LoginActivity
 import com.example.saulifeapp.R
 import com.example.saulifeapp.databinding.FragmentProfileBinding
+import com.example.saulifeapp.ui.treatment.TreatmentActivity
+import com.example.saulifeapp.ui.treatment.TreatmentFragment
 import com.example.saulifeapp.utils.AppPreferences
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.card.MaterialCardView
@@ -51,7 +53,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private var cachedGender: String = ""
     private var cachedCity: String = ""
 
-    // Notification permission launcher (Android 13+)
     private val notifPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
@@ -76,24 +77,39 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding.cardEditProfile.setOnClickListener {
             startActivity(Intent(requireContext(), EditProfileActivity::class.java))
         }
-        binding.cardTreatment.setOnClickListener { }
-        binding.cardHistory.setOnClickListener { }
 
-        // Хабарламалар → bottom sheet
-        binding.cardNotifications.setOnClickListener {
-            showNotificationsSheet()
+        // ✅ Менің емделуім → меню бөліміндегі TreatmentActivity-ге ауысады
+        binding.cardTreatment.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.container, TreatmentFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+        // ✅ Денсаулық тарихы → денсаулық ақпараты (қан тобы, аллергия, т.б.) Extra арқылы беріледі
+        binding.cardHistory.setOnClickListener {
+            val intent = Intent(requireContext(), HealthHistoryActivity::class.java).apply {
+                putExtra(HealthHistoryActivity.EXTRA_BLOOD_TYPE,   cachedBloodType)
+                putExtra(HealthHistoryActivity.EXTRA_ALLERGIES,    cachedAllergies)
+                putExtra(HealthHistoryActivity.EXTRA_CHRONIC,      cachedChronic)
+                putExtra(HealthHistoryActivity.EXTRA_CURRENT_MEDS, cachedCurrentMeds)
+                putExtra(HealthHistoryActivity.EXTRA_NAME,         cachedName)
+                putExtra(HealthHistoryActivity.EXTRA_AGE,          cachedAge)
+                putExtra(HealthHistoryActivity.EXTRA_GENDER,       cachedGender)
+            }
+            startActivity(intent)
         }
 
-        // Баптаулар → beautiful bottom sheet
-        binding.cardSettings.setOnClickListener {
-            showSettingsSheet()
-        }
+        // ❌ cardOrderHistory (Тарих) — жойылды, click handler жоқ
+
+        binding.cardNotifications.setOnClickListener { showNotificationsSheet() }
+        binding.cardSettings.setOnClickListener { showSettingsSheet() }
 
         binding.btnLogout.setOnClickListener {
             auth.signOut()
             startActivity(Intent(requireContext(), LoginActivity::class.java))
             requireActivity().finishAffinity()
         }
+
         binding.btnExportPdf.setOnClickListener { exportAsPdf() }
         binding.btnExportCsv.setOnClickListener { exportAsCsv() }
     }
@@ -108,13 +124,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             .inflate(R.layout.bottom_sheet_notifications, null)
         sheet.setContentView(view)
 
-        val switchPush       = view.findViewById<android.widget.Switch>(R.id.switchPushNotif)
-        val switchReminder   = view.findViewById<android.widget.Switch>(R.id.switchMedReminder)
-        val switchAppoint    = view.findViewById<android.widget.Switch>(R.id.switchAppointments)
-        val switchNews       = view.findViewById<android.widget.Switch>(R.id.switchHealthNews)
-        val btnSave          = view.findViewById<android.widget.Button>(R.id.btnSaveNotif)
+        val switchPush     = view.findViewById<android.widget.Switch>(R.id.switchPushNotif)
+        val switchReminder = view.findViewById<android.widget.Switch>(R.id.switchMedReminder)
+        val switchAppoint  = view.findViewById<android.widget.Switch>(R.id.switchAppointments)
+        val switchNews     = view.findViewById<android.widget.Switch>(R.id.switchHealthNews)
+        val btnSave        = view.findViewById<android.widget.Button>(R.id.btnSaveNotif)
 
-        // Reflect current OS permission state
         val hasPermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             ContextCompat.checkSelfPermission(
                 requireContext(), Manifest.permission.POST_NOTIFICATIONS
@@ -122,12 +137,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         } else true
 
         switchPush.isChecked = hasPermission
-
         switchPush.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) requestNotificationPermission()
         }
 
-        // Load saved prefs
         val prefs = requireContext().getSharedPreferences("notif_prefs", 0)
         switchReminder.isChecked = prefs.getBoolean("med_reminder", true)
         switchAppoint.isChecked  = prefs.getBoolean("appointments", true)
@@ -142,7 +155,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             Toast.makeText(requireContext(), "✅ Сақталды", Toast.LENGTH_SHORT).show()
             sheet.dismiss()
         }
-
         sheet.show()
     }
 
@@ -179,7 +191,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             .inflate(R.layout.bottom_sheet_settings, null)
         sheet.setContentView(view)
 
-        // ── Тіл карталары ─────────────────────────────────
         val cardKk = view.findViewById<MaterialCardView>(R.id.cardLangKk)
         val cardRu = view.findViewById<MaterialCardView>(R.id.cardLangRu)
         val cardEn = view.findViewById<MaterialCardView>(R.id.cardLangEn)
@@ -189,10 +200,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             cardRu to AppPreferences.LANGUAGE_RU,
             cardEn to AppPreferences.LANGUAGE_EN
         )
-
-        val currentLang = AppPreferences.getLanguage(requireContext())
-        applyCardSelection(langPairs, currentLang)
-
+        applyCardSelection(langPairs, AppPreferences.getLanguage(requireContext()))
         langPairs.forEach { (card, code) ->
             card.setOnClickListener {
                 applyCardSelection(langPairs, code)
@@ -206,7 +214,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
         }
 
-        // ── Тема карталары ────────────────────────────────
         val cardSystem = view.findViewById<MaterialCardView>(R.id.cardThemeSystem)
         val cardLight  = view.findViewById<MaterialCardView>(R.id.cardThemeLight)
         val cardDark   = view.findViewById<MaterialCardView>(R.id.cardThemeDark)
@@ -216,10 +223,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             cardLight  to AppPreferences.THEME_LIGHT,
             cardDark   to AppPreferences.THEME_DARK
         )
-
-        val currentTheme = AppPreferences.getTheme(requireContext())
-        applyCardSelection(themePairs, currentTheme)
-
+        applyCardSelection(themePairs, AppPreferences.getTheme(requireContext()))
         themePairs.forEach { (card, code) ->
             card.setOnClickListener {
                 applyCardSelection(themePairs, code)
@@ -227,16 +231,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
         }
 
-        // ── Хабарламалар → notifications sheet ───────────
         view.findViewById<MaterialCardView>(R.id.cardGoNotifications)?.setOnClickListener {
             sheet.dismiss()
             showNotificationsSheet()
         }
-
         sheet.show()
     }
 
-    /** Таңдалған картаны жасыл border-мен белгілейді */
     private fun applyCardSelection(pairs: List<Pair<MaterialCardView, String>>, selected: String) {
         val primaryColor = resources.getColor(R.color.teal_dark, null)
         pairs.forEach { (card, code) ->
@@ -288,6 +289,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 val chronic     = document.getString("chronicDiseases").orEmpty()
                 val currentMeds = document.getString("currentMedications").orEmpty()
 
+                // Cache — cardHistory Intent үшін де қажет
                 cachedName        = finalName
                 cachedEmail       = finalEmail
                 cachedBloodType   = bloodType
@@ -308,7 +310,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
     }
 
-    private fun bindHealthCard(bloodType: String, allergies: String, chronic: String, currentMeds: String) {
+    private fun bindHealthCard(
+        bloodType: String,
+        allergies: String,
+        chronic: String,
+        currentMeds: String
+    ) {
         binding.tvHealthBloodType.text   = bloodType.ifBlank { "—" }
         binding.tvHealthAllergies.text   = allergies.ifBlank { "—" }
         binding.tvHealthChronic.text     = chronic.ifBlank { "—" }
@@ -317,7 +324,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     }
 
     // ══════════════════════════════════════════════════════
-    //  PDF / CSV EXPORT  (өзгеріссіз)
+    //  PDF / CSV EXPORT
     // ══════════════════════════════════════════════════════
 
     private fun exportAsPdf() {
@@ -354,11 +361,14 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         val lp = Paint().apply { color = grayColor; textSize = 11f; isAntiAlias = true }
         val vp = Paint().apply { color = darkColor; textSize = 14f; isFakeBoldText = true; isAntiAlias = true }
 
-        canvas.drawText("АТЫ-ЖӨНІ", 52f, 148f, lp); canvas.drawText(cachedName.ifBlank { "—" }, 52f, 168f, vp)
-        canvas.drawText("EMAIL", 300f, 148f, lp); canvas.drawText(cachedEmail.ifBlank { "—" }, 300f, 168f, vp)
+        canvas.drawText("АТЫ-ЖӨНІ", 52f, 148f, lp)
+        canvas.drawText(cachedName.ifBlank { "—" }, 52f, 168f, vp)
+        canvas.drawText("EMAIL", 300f, 148f, lp)
+        canvas.drawText(cachedEmail.ifBlank { "—" }, 300f, 168f, vp)
         canvas.drawText("ЖАСЫ", 52f, 192f, lp)
         canvas.drawText(if (cachedAge > 0) "${cachedAge} жас" else "—", 52f, 206f, vp)
-        canvas.drawText("ЖЫНЫСЫ", 300f, 192f, lp); canvas.drawText(cachedGender.ifBlank { "—" }, 300f, 206f, vp)
+        canvas.drawText("ЖЫНЫСЫ", 300f, 192f, lp)
+        canvas.drawText(cachedGender.ifBlank { "—" }, 300f, 206f, vp)
 
         var y = 238f
         fun drawSection(emoji: String, title: String, value: String) {
@@ -377,7 +387,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             y += h + 10f
         }
 
-        // Blood type pill
         canvas.drawRoundRect(36f, y, 559f, y + 60f, 10f, 10f, Paint().apply { color = Color.WHITE })
         canvas.drawRoundRect(36f, y, 559f, y + 60f, 10f, 10f, Paint().apply {
             color = Color.parseColor("#E8ECF2"); style = Paint.Style.STROKE; strokeWidth = 1f })

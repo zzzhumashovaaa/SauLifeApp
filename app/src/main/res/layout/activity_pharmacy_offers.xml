@@ -41,7 +41,7 @@
                     android:id="@+id/tvMedicineName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Лекарство"
+                    android:text="Дәрі"
                     android:textColor="#0D1B2A"
                     android:textSize="22sp"
                     android:textStyle="bold"/>
@@ -93,7 +93,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:text="Информация о цене"
+                    android:text="Баға туралы ақпарат"
                     android:textColor="#2E7D32"
                     android:textSize="15sp"
                     android:textStyle="bold"/>
