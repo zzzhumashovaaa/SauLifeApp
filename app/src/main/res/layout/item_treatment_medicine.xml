@@ -4,165 +4,223 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
-        app:cardCornerRadius="24dp"
-        app:cardElevation="3dp"
+        android:layout_marginBottom="12dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="0dp"
         app:cardBackgroundColor="@color/white">
 
+    <!-- Жасыл сол жиек accent -->
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="18dp">
+            android:orientation="horizontal">
 
-        <!-- Top Row -->
+        <View
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:background="#0F9B8E" />
+
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:padding="16dp">
+
+            <!-- ── Top Row: Icon + Name + Badge ── -->
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                <!-- Icon circle -->
+                <FrameLayout
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_teal_circle">
+
+                    <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_medicine"
+                            app:tint="#0F9B8E" />
+                </FrameLayout>
+
+                <!-- Name + Dosage -->
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:id="@+id/textMedicineName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Paracetamol"
+                            android:textColor="#1A2B2B"
+                            android:textSize="16sp"
+                            android:fontFamily="sans-serif-black"
+                            android:letterSpacing="-0.01" />
+
+                    <TextView
+                            android:id="@+id/textDosage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="500 mg"
+                            android:textColor="#8FA8A6"
+                            android:textSize="13sp"
+                            android:fontFamily="sans-serif" />
+                </LinearLayout>
+
+                <!-- Category badge -->
+                <TextView
+                        android:id="@+id/textCategory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:background="@drawable/bg_teal_badge"
+                        android:text="Medicine"
+                        android:textColor="#0F9B8E"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium" />
+            </LinearLayout>
+
+            <!-- ── Divider ── -->
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="#F0F5F5" />
+
+            <!-- ── Info Row: Quantity + Expiry ── -->
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Қалды"
+                            android:textColor="#8FA8A6"
+                            android:textSize="11sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:letterSpacing="0.03" />
+
+                    <TextView
+                            android:id="@+id/textQuantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="12 pcs"
+                            android:textColor="#1A2B2B"
+                            android:textSize="15sp"
+                            android:fontFamily="sans-serif-black" />
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.6"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Жарамдылық"
+                            android:textColor="#8FA8A6"
+                            android:textSize="11sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:letterSpacing="0.03" />
+
+                    <TextView
+                            android:id="@+id/textExpiry"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="2026-12-01"
+                            android:textColor="#1A2B2B"
+                            android:textSize="15sp"
+                            android:fontFamily="sans-serif-black" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ── Progress Bar ── -->
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="Қор деңгейі"
+                    android:textColor="#8FA8A6"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium" />
 
             <FrameLayout
-                    android:layout_width="46dp"
-                    android:layout_height="46dp"
-                    android:background="@drawable/bg_medicine_icon">
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp">
 
-                <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_medicine"
-                        app:tint="@color/treatment_text_primary" />
+                <!-- Track -->
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_progress_track" />
+
+                <!-- Fill — width Adapter-дан programmatically орнатылады -->
+                <View
+                        android:id="@+id/viewProgress"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_progress_fill" />
             </FrameLayout>
 
+            <!-- ── AI Warning ── -->
             <LinearLayout
-                    android:layout_width="0dp"
+                    android:id="@+id/layoutAiWarning"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/bg_warning_card"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    android:visibility="gone">
 
                 <TextView
-                        android:id="@+id/textMedicineName"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Paracetamol"
-                        android:textColor="@color/treatment_text_primary"
-                        android:textSize="17sp"
-                        android:textStyle="bold" />
+                        android:text="⚠️"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="8dp" />
 
                 <TextView
-                        android:id="@+id/textDosage"
-                        android:layout_width="match_parent"
+                        android:id="@+id/textAiWarning"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:text="500 mg"
-                        android:textColor="@color/treatment_text_secondary"
-                        android:textSize="13sp" />
+                        android:layout_weight="1"
+                        android:text="AI ескертуі: дәріні нұсқаулық бойынша қабылдаңыз"
+                        android:textColor="#7A5C00"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:lineSpacingExtra="2dp" />
             </LinearLayout>
 
-            <TextView
-                    android:id="@+id/textCategory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:gravity="center"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
-                    android:background="@drawable/bg_medicine_icon"
-                    android:text="Medicine"
-                    android:textColor="@color/treatment_text_primary"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
         </LinearLayout>
-
-        <!-- Info Row -->
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal">
-
-            <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Қалды"
-                        android:textColor="@color/treatment_text_secondary"
-                        android:textSize="12sp" />
-
-                <TextView
-                        android:id="@+id/textQuantity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:text="12 pcs"
-                        android:textColor="@color/treatment_text_primary"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.4"
-                    android:orientation="vertical">
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Жарамдылық"
-                        android:textColor="@color/treatment_text_secondary"
-                        android:textSize="12sp" />
-
-                <TextView
-                        android:id="@+id/textExpiry"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:text="Expiry: 2026-12-01"
-                        android:textColor="@color/treatment_text_primary"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- Progress imitation -->
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/bg_medicine_icon"
-                android:orientation="horizontal">
-
-            <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7"
-                    android:background="@drawable/bg_button" />
-
-            <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3" />
-        </LinearLayout>
-
-        <!-- AI Warning -->
-        <TextView
-                android:id="@+id/textAiWarning"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:padding="12dp"
-                android:background="@drawable/bg_medicine_icon"
-                android:text="AI ескертуі: дәріні нұсқаулық бойынша қабылдаңыз"
-                android:textColor="@color/treatment_text_primary"
-                android:textSize="13sp" />
-
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
