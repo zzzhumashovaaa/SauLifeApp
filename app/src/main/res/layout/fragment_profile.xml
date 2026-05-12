@@ -1,602 +1,177 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#F7F9FC">
-
-    <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="20dp">
-
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="20dp"
-                android:orientation="vertical">
-
-            <ProgressBar
-                    android:id="@+id/progressBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:indeterminateTint="#0F9B8E"
-                    android:visibility="gone"
-                    android:layout_marginBottom="10dp" />
-
-            <!-- Hero card with gradient background -->
-            <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="24dp"
-                    app:cardElevation="0dp"
-                    app:cardBackgroundColor="#0F9B8E"
-                    app:strokeWidth="0dp"
-                    android:layout_marginBottom="16dp">
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="28dp">
-
-                    <!-- Avatar circle -->
-                    <com.google.android.material.card.MaterialCardView
-                            android:layout_width="76dp"
-                            android:layout_height="76dp"
-                            app:cardCornerRadius="38dp"
-                            app:cardElevation="0dp"
-                            app:cardBackgroundColor="#1DB8A8"
-                            app:strokeColor="#FFFFFF"
-                            app:strokeWidth="2dp"
-                            android:layout_marginBottom="14dp">
-
-                        <TextView
-                                android:id="@+id/tvInitials"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:text="АА"
-                                android:textColor="#FFFFFF"
-                                android:textSize="26sp"
-                                android:textStyle="bold" />
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F7F9FC">
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent" android:paddingBottom="20dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingHorizontal="20dp" android:orientation="vertical">
+            <ProgressBar android:id="@+id/progressBar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:indeterminateTint="#0F9B8E" android:visibility="gone" android:layout_marginBottom="10dp"/>
+            <!--  Hero card with gradient background  -->
+            <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="24dp" app:cardElevation="0dp" app:cardBackgroundColor="#0F9B8E" app:strokeWidth="0dp" android:layout_marginBottom="16dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:orientation="vertical" android:padding="28dp">
+                    <!--  Avatar circle  -->
+                    <com.google.android.material.card.MaterialCardView android:layout_width="76dp" android:layout_height="76dp" app:cardCornerRadius="38dp" app:cardElevation="0dp" app:cardBackgroundColor="#1DB8A8" app:strokeColor="#FFFFFF" app:strokeWidth="2dp" android:layout_marginBottom="14dp">
+                        <TextView android:id="@+id/tvInitials" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="АА" android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"/>
                     </com.google.android.material.card.MaterialCardView>
-
-                    <TextView
-                            android:id="@+id/tvName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Пайдаланушы"
-                            android:textColor="#FFFFFF"
-                            android:textSize="22sp"
-                            android:textStyle="bold" />
-
-                    <TextView
-                            android:id="@+id/tvEmail"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="email@example.com"
-                            android:textColor="#B2E8E4"
-                            android:textSize="12sp"
-                            android:layout_marginTop="4dp" />
-
-                    <!-- Status pill -->
-                    <com.google.android.material.card.MaterialCardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="16dp"
-                            app:cardElevation="0dp"
-                            app:cardBackgroundColor="#1DB8A8"
-                            app:strokeWidth="0dp"
-                            android:layout_marginTop="14dp">
-
-                        <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal"
-                                android:paddingStart="14dp"
-                                android:paddingEnd="14dp"
-                                android:paddingTop="8dp"
-                                android:paddingBottom="8dp">
-
-                            <View
-                                    android:layout_width="7dp"
-                                    android:layout_height="7dp"
-                                    android:background="@drawable/circle_green_dot"
-                                    android:layout_marginEnd="8dp" />
-
-                            <TextView
-                                    android:id="@+id/tvProfileStatus"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Профиль толтырылған"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="10sp"
-                                    android:textStyle="bold" />
+                    <TextView android:id="@+id/tvName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Пайдаланушы" android:textColor="#FFFFFF" android:textSize="22sp" android:textStyle="bold"/>
+                    <TextView android:id="@+id/tvEmail" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="email@example.com" android:textColor="#B2E8E4" android:textSize="12sp" android:layout_marginTop="4dp"/>
+                    <!--  Status pill  -->
+                    <com.google.android.material.card.MaterialCardView android:layout_width="wrap_content" android:layout_height="wrap_content" app:cardCornerRadius="16dp" app:cardElevation="0dp" app:cardBackgroundColor="#1DB8A8" app:strokeWidth="0dp" android:layout_marginTop="14dp">
+                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal" android:paddingStart="14dp" android:paddingEnd="14dp" android:paddingTop="8dp" android:paddingBottom="8dp">
+                            <View android:layout_width="7dp" android:layout_height="7dp" android:background="@drawable/circle_green_dot" android:layout_marginEnd="8dp"/>
+                            <TextView android:id="@+id/tvProfileStatus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Профиль толтырылған" android:textColor="#FFFFFF" android:textSize="10sp" android:textStyle="bold"/>
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
-
-                    <!-- Edit profile row -->
-                    <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cardEditProfile"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="20dp"
-                            app:cardCornerRadius="16dp"
-                            app:cardElevation="0dp"
-                            app:cardBackgroundColor="#FFFFFF"
-                            app:strokeWidth="0dp">
-
-                        <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal"
-                                android:paddingStart="18dp"
-                                android:paddingEnd="18dp">
-
-                            <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="Профильді өңдеу"
-                                    android:textColor="#0D1B2A"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold" />
-
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="›"
-                                    android:textColor="#9AAAB8"
-                                    android:textSize="22sp" />
+                    <!--  Edit profile row  -->
+                    <com.google.android.material.card.MaterialCardView android:id="@+id/cardEditProfile" android:layout_width="match_parent" android:layout_height="50dp" android:layout_marginTop="20dp" app:cardCornerRadius="16dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFFFFF" app:strokeWidth="0dp">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center_vertical" android:orientation="horizontal" android:paddingStart="18dp" android:paddingEnd="18dp">
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Профильді өңдеу" android:textColor="#0D1B2A" android:textSize="15sp" android:textStyle="bold"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#9AAAB8" android:textSize="22sp"/>
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
-
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
-
-            <!-- Section label: Медициналық -->
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="МЕДИЦИНАЛЫҚ"
-                    android:textColor="#9AAAB8"
-                    android:textSize="10sp"
-                    android:letterSpacing="0.08"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginStart="2dp" />
-
-            <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="0dp"
-                    app:cardBackgroundColor="#FFFFFF"
-                    app:strokeColor="#E8ECF2"
-                    app:strokeWidth="1dp"
-                    android:layout_marginBottom="16dp">
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                    <!-- Емделу -->
-                    <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cardTreatment"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="0dp"
-                            app:cardElevation="0dp"
-                            app:cardBackgroundColor="#FFFFFF"
-                            app:strokeWidth="0dp">
-
-                        <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal"
-                                android:padding="18dp">
-
-                            <com.google.android.material.card.MaterialCardView
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    app:cardCornerRadius="12dp"
-                                    app:cardElevation="0dp"
-                                    app:cardBackgroundColor="#E6F7F6"
-                                    app:strokeWidth="0dp"
-                                    android:layout_marginEnd="14dp">
-
-                                <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:text="💊"
-                                        android:textSize="18sp" />
-                            </com.google.android.material.card.MaterialCardView>
-
-                            <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-
-                                <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Менің емделуім"
-                                        android:textColor="#0D1B2A"
-                                        android:textSize="15sp"
-                                        android:textStyle="bold" />
-
-                                <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Курстар, препараттар, еске салулар"
-                                        android:textColor="#9AAAB8"
-                                        android:textSize="12sp"
-                                        android:layout_marginTop="2dp" />
-                            </LinearLayout>
-
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="›"
-                                    android:textColor="#9AAAB8"
-                                    android:textSize="22sp" />
+            <!--  ══════════ HEALTH INFO CARD ══════════  -->
+            <com.google.android.material.card.MaterialCardView android:id="@+id/cardHealthInfo" android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="20dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFFFFF" app:strokeColor="#E8ECF2" app:strokeWidth="1dp" android:layout_marginBottom="16dp" android:visibility="gone">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
+                    <!--  Card header row  -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="16dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="ДЕНСАУЛЫҚ АҚПАРАТЫ" android:textColor="#9AAAB8" android:textSize="11sp" android:textStyle="bold" android:letterSpacing="0.08"/>
+                        <!--  Export buttons  -->
+                        <Button android:id="@+id/btnExportPdf" android:layout_width="wrap_content" android:layout_height="34dp" android:text="PDF" android:textAllCaps="false" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" android:backgroundTint="#0F9B8E" android:paddingStart="14dp" android:paddingEnd="14dp" app:cornerRadius="10dp" android:layout_marginEnd="8dp"/>
+                        <Button android:id="@+id/btnExportCsv" android:layout_width="wrap_content" android:layout_height="34dp" android:text="CSV" android:textAllCaps="false" android:textColor="#0F9B8E" android:textSize="12sp" android:textStyle="bold" android:backgroundTint="#E6F7F6" android:paddingStart="14dp" android:paddingEnd="14dp" app:cornerRadius="10dp"/>
+                    </LinearLayout>
+                    <!--  Divider  -->
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F2F5" android:layout_marginBottom="16dp"/>
+                    <!--  Blood type row  -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="14dp">
+                        <com.google.android.material.card.MaterialCardView android:layout_width="38dp" android:layout_height="38dp" app:cardCornerRadius="10dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFE8E8" app:strokeWidth="0dp" android:layout_marginEnd="14dp">
+                            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="🩸" android:textSize="16sp"/>
+                        </com.google.android.material.card.MaterialCardView>
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Қан тобы" android:textColor="#9AAAB8" android:textSize="11sp" android:layout_marginBottom="4dp"/>
+                            <TextView android:id="@+id/tvHealthBloodType" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textColor="#FFFFFF" android:textSize="13sp" android:textStyle="bold" android:background="@drawable/badge_red_bg" android:paddingStart="10dp" android:paddingEnd="10dp" android:paddingTop="4dp" android:paddingBottom="4dp"/>
                         </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#F0F2F5"
-                            android:layout_marginStart="72dp" />
-
-                    <!-- Денсаулық тарихы -->
-                    <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cardHistory"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="0dp"
-                            app:cardElevation="0dp"
-                            app:cardBackgroundColor="#FFFFFF"
-                            app:strokeWidth="0dp">
-
-                        <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal"
-                                android:padding="18dp">
-
-                            <com.google.android.material.card.MaterialCardView
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    app:cardCornerRadius="12dp"
-                                    app:cardElevation="0dp"
-                                    app:cardBackgroundColor="#EAF3DE"
-                                    app:strokeWidth="0dp"
-                                    android:layout_marginEnd="14dp">
-
-                                <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:text="📋"
-                                        android:textSize="18sp" />
-                            </com.google.android.material.card.MaterialCardView>
-
-                            <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-
-                                <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Денсаулық тарихы"
-                                        android:textColor="#0D1B2A"
-                                        android:textSize="15sp"
-                                        android:textStyle="bold" />
-
-                                <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Талдаулар, нәтижелер, визиттер"
-                                        android:textColor="#9AAAB8"
-                                        android:textSize="12sp"
-                                        android:layout_marginTop="2dp" />
-                            </LinearLayout>
-
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="›"
-                                    android:textColor="#9AAAB8"
-                                    android:textSize="22sp" />
+                    </LinearLayout>
+                    <!--  Divider  -->
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F2F5" android:layout_marginBottom="14dp"/>
+                    <!--  Allergies row  -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="top" android:layout_marginBottom="14dp">
+                        <com.google.android.material.card.MaterialCardView android:layout_width="38dp" android:layout_height="38dp" app:cardCornerRadius="10dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFF8ED" app:strokeWidth="0dp" android:layout_marginEnd="14dp">
+                            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="⚠️" android:textSize="16sp"/>
+                        </com.google.android.material.card.MaterialCardView>
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Аллергиялар" android:textColor="#9AAAB8" android:textSize="11sp" android:layout_marginBottom="4dp"/>
+                            <TextView android:id="@+id/tvHealthAllergies" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="—" android:textColor="#0D1B2A" android:textSize="14sp"/>
                         </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
+                    </LinearLayout>
+                    <!--  Divider  -->
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F2F5" android:layout_marginBottom="14dp"/>
+                    <!--  Chronic diseases row  -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="top" android:layout_marginBottom="14dp">
+                        <com.google.android.material.card.MaterialCardView android:layout_width="38dp" android:layout_height="38dp" app:cardCornerRadius="10dp" app:cardElevation="0dp" app:cardBackgroundColor="#EEF1FE" app:strokeWidth="0dp" android:layout_marginEnd="14dp">
+                            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="🫀" android:textSize="16sp"/>
+                        </com.google.android.material.card.MaterialCardView>
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Созылмалы аурулар" android:textColor="#9AAAB8" android:textSize="11sp" android:layout_marginBottom="4dp"/>
+                            <TextView android:id="@+id/tvHealthChronic" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="—" android:textColor="#0D1B2A" android:textSize="14sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!--  Divider  -->
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F2F5" android:layout_marginBottom="14dp"/>
+                    <!--  Current medications row  -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="top">
+                        <com.google.android.material.card.MaterialCardView android:layout_width="38dp" android:layout_height="38dp" app:cardCornerRadius="10dp" app:cardElevation="0dp" app:cardBackgroundColor="#E6F7F6" app:strokeWidth="0dp" android:layout_marginEnd="14dp">
+                            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="💊" android:textSize="16sp"/>
+                        </com.google.android.material.card.MaterialCardView>
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ағымдағы дәрілер" android:textColor="#9AAAB8" android:textSize="11sp" android:layout_marginBottom="4dp"/>
+                            <TextView android:id="@+id/tvHealthCurrentMeds" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="—" android:textColor="#0D1B2A" android:textSize="14sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
-
-            <!-- Section label: Параметрлер -->
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="ПАРАМЕТРЛЕР"
-                    android:textColor="#9AAAB8"
-                    android:textSize="10sp"
-                    android:letterSpacing="0.08"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginStart="2dp" />
-
-            <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="0dp"
-                    app:cardBackgroundColor="#FFFFFF"
-                    app:strokeColor="#E8ECF2"
-                    app:strokeWidth="1dp"
-                    android:layout_marginBottom="16dp">
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                    <!-- Хабарламалар -->
-                    <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cardNotifications"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="0dp"
-                            app:cardElevation="0dp"
-                            app:cardBackgroundColor="#FFFFFF"
-                            app:strokeWidth="0dp">
-
-                        <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal"
-                                android:padding="18dp">
-
-                            <com.google.android.material.card.MaterialCardView
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    app:cardCornerRadius="12dp"
-                                    app:cardElevation="0dp"
-                                    app:cardBackgroundColor="#EEF1FE"
-                                    app:strokeWidth="0dp"
-                                    android:layout_marginEnd="14dp">
-
-                                <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:text="🔔"
-                                        android:textSize="18sp" />
+            <!--  ══════════ END HEALTH INFO CARD ══════════  -->
+            <!--  Section label: Медициналық  -->
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="МЕДИЦИНАЛЫҚ" android:textColor="#9AAAB8" android:textSize="10sp" android:letterSpacing="0.08" android:layout_marginBottom="10dp" android:layout_marginStart="2dp"/>
+            <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="20dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFFFFF" app:strokeColor="#E8ECF2" app:strokeWidth="1dp" android:layout_marginBottom="16dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                    <!--  Емделу  -->
+                    <com.google.android.material.card.MaterialCardView android:id="@+id/cardTreatment" android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="0dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFFFFF" app:strokeWidth="0dp">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal" android:padding="18dp">
+                            <com.google.android.material.card.MaterialCardView android:layout_width="40dp" android:layout_height="40dp" app:cardCornerRadius="12dp" app:cardElevation="0dp" app:cardBackgroundColor="#E6F7F6" app:strokeWidth="0dp" android:layout_marginEnd="14dp">
+                                <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="💊" android:textSize="18sp"/>
                             </com.google.android.material.card.MaterialCardView>
-
-                            <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-
-                                <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Хабарламалар"
-                                        android:textColor="#0D1B2A"
-                                        android:textSize="15sp"
-                                        android:textStyle="bold" />
-
-                                <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Еске салулар мен жүйелік"
-                                        android:textColor="#9AAAB8"
-                                        android:textSize="12sp"
-                                        android:layout_marginTop="2dp" />
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Менің емделуім" android:textColor="#0D1B2A" android:textSize="15sp" android:textStyle="bold"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Курстар, препараттар, еске салулар" android:textColor="#9AAAB8" android:textSize="12sp" android:layout_marginTop="2dp"/>
                             </LinearLayout>
-
-                            <!-- Badge -->
-                            <TextView
-                                    android:id="@+id/tvNotifBadge"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="3"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="11sp"
-                                    android:textStyle="bold"
-                                    android:background="@drawable/badge_red_bg"
-                                    android:paddingStart="7dp"
-                                    android:paddingEnd="7dp"
-                                    android:paddingTop="3dp"
-                                    android:paddingBottom="3dp"
-                                    android:layout_marginEnd="10dp" />
-
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="›"
-                                    android:textColor="#9AAAB8"
-                                    android:textSize="22sp" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#9AAAB8" android:textSize="22sp"/>
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
-
-                    <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#F0F2F5"
-                            android:layout_marginStart="72dp" />
-
-                    <!-- Тарих -->
-                    <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cardOrderHistory"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="0dp"
-                            app:cardElevation="0dp"
-                            app:cardBackgroundColor="#FFFFFF"
-                            app:strokeWidth="0dp">
-
-                        <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal"
-                                android:padding="18dp">
-
-                            <com.google.android.material.card.MaterialCardView
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    app:cardCornerRadius="12dp"
-                                    app:cardElevation="0dp"
-                                    app:cardBackgroundColor="#FFF8ED"
-                                    app:strokeWidth="0dp"
-                                    android:layout_marginEnd="14dp">
-
-                                <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:text="🕘"
-                                        android:textSize="18sp" />
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F2F5" android:layout_marginStart="72dp"/>
+                    <!--  Денсаулық тарихы  -->
+                    <com.google.android.material.card.MaterialCardView android:id="@+id/cardHistory" android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="0dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFFFFF" app:strokeWidth="0dp">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal" android:padding="18dp">
+                            <com.google.android.material.card.MaterialCardView android:layout_width="40dp" android:layout_height="40dp" app:cardCornerRadius="12dp" app:cardElevation="0dp" app:cardBackgroundColor="#EAF3DE" app:strokeWidth="0dp" android:layout_marginEnd="14dp">
+                                <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="📋" android:textSize="18sp"/>
                             </com.google.android.material.card.MaterialCardView>
-
-                            <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-
-                                <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Тарих"
-                                        android:textColor="#0D1B2A"
-                                        android:textSize="15sp"
-                                        android:textStyle="bold" />
-
-                                <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Тапсырыстар, іздеулер"
-                                        android:textColor="#9AAAB8"
-                                        android:textSize="12sp"
-                                        android:layout_marginTop="2dp" />
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Денсаулық тарихы" android:textColor="#0D1B2A" android:textSize="15sp" android:textStyle="bold"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Талдаулар, нәтижелер, визиттер" android:textColor="#9AAAB8" android:textSize="12sp" android:layout_marginTop="2dp"/>
                             </LinearLayout>
-
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="›"
-                                    android:textColor="#9AAAB8"
-                                    android:textSize="22sp" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#9AAAB8" android:textSize="22sp"/>
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
-
-                    <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#F0F2F5"
-                            android:layout_marginStart="72dp" />
-
-                    <!-- Баптаулар -->
-                    <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cardSettings"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="16dp"
-                            app:cardElevation="0dp"
-                            app:cardBackgroundColor="#FFFFFF"
-                            app:strokeWidth="0dp">
-
-                        <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal"
-                                android:padding="18dp">
-
-                            <com.google.android.material.card.MaterialCardView
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    app:cardCornerRadius="12dp"
-                                    app:cardElevation="0dp"
-                                    app:cardBackgroundColor="#FFF0F0"
-                                    app:strokeWidth="0dp"
-                                    android:layout_marginEnd="14dp">
-
-                                <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:text="⚙️"
-                                        android:textSize="18sp" />
-                            </com.google.android.material.card.MaterialCardView>
-
-                            <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-
-                                <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Баптаулар"
-                                        android:textColor="#0D1B2A"
-                                        android:textSize="15sp"
-                                        android:textStyle="bold" />
-
-                                <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Тіл, тақырып, құпиялылық"
-                                        android:textColor="#9AAAB8"
-                                        android:textSize="12sp"
-                                        android:layout_marginTop="2dp" />
-                            </LinearLayout>
-
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="›"
-                                    android:textColor="#9AAAB8"
-                                    android:textSize="22sp" />
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
-
-            <!-- Logout button -->
-            <Button
-                    android:id="@+id/btnLogout"
-                    android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:text="Шығу"
-                    android:textAllCaps="false"
-                    android:textColor="#0F9B8E"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:backgroundTint="#FFFFFF"
-                    app:strokeColor="#E8ECF2"
-                    app:cornerRadius="16dp"
-                    android:layout_marginTop="2dp" />
-
+            <!--  Section label: Параметрлер  -->
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="ПАРАМЕТРЛЕР" android:textColor="#9AAAB8" android:textSize="10sp" android:letterSpacing="0.08" android:layout_marginBottom="10dp" android:layout_marginStart="2dp"/>
+            <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="20dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFFFFF" app:strokeColor="#E8ECF2" app:strokeWidth="1dp" android:layout_marginBottom="16dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                    <!--  Хабарламалар  -->
+                    <com.google.android.material.card.MaterialCardView android:id="@+id/cardNotifications" android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="0dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFFFFF" app:strokeWidth="0dp">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal" android:padding="18dp">
+                            <com.google.android.material.card.MaterialCardView android:layout_width="40dp" android:layout_height="40dp" app:cardCornerRadius="12dp" app:cardElevation="0dp" app:cardBackgroundColor="#EEF1FE" app:strokeWidth="0dp" android:layout_marginEnd="14dp">
+                                <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="🔔" android:textSize="18sp"/>
+                            </com.google.android.material.card.MaterialCardView>
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Хабарламалар" android:textColor="#0D1B2A" android:textSize="15sp" android:textStyle="bold"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Еске салулар мен жүйелік" android:textColor="#9AAAB8" android:textSize="12sp" android:layout_marginTop="2dp"/>
+                            </LinearLayout>
+                            <!--  Badge  -->
+                            <TextView android:id="@+id/tvNotifBadge" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="3" android:textColor="#FFFFFF" android:textSize="11sp" android:textStyle="bold" android:background="@drawable/badge_red_bg" android:paddingStart="7dp" android:paddingEnd="7dp" android:paddingTop="3dp" android:paddingBottom="3dp" android:layout_marginEnd="10dp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#9AAAB8" android:textSize="22sp"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F2F5" android:layout_marginStart="72dp"/>
+                    <!--  Тарих  -->
+                    <com.google.android.material.card.MaterialCardView android:id="@+id/cardOrderHistory" android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="0dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFFFFF" app:strokeWidth="0dp">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal" android:padding="18dp">
+                            <com.google.android.material.card.MaterialCardView android:layout_width="40dp" android:layout_height="40dp" app:cardCornerRadius="12dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFF8ED" app:strokeWidth="0dp" android:layout_marginEnd="14dp">
+                                <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="🕘" android:textSize="18sp"/>
+                            </com.google.android.material.card.MaterialCardView>
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Тарих" android:textColor="#0D1B2A" android:textSize="15sp" android:textStyle="bold"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Тапсырыстар, іздеулер" android:textColor="#9AAAB8" android:textSize="12sp" android:layout_marginTop="2dp"/>
+                            </LinearLayout>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#9AAAB8" android:textSize="22sp"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F2F5" android:layout_marginStart="72dp"/>
+                    <!--  Баптаулар  -->
+                    <com.google.android.material.card.MaterialCardView android:id="@+id/cardSettings" android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="16dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFFFFF" app:strokeWidth="0dp">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal" android:padding="18dp">
+                            <com.google.android.material.card.MaterialCardView android:layout_width="40dp" android:layout_height="40dp" app:cardCornerRadius="12dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFF0F0" app:strokeWidth="0dp" android:layout_marginEnd="14dp">
+                                <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="⚙️" android:textSize="18sp"/>
+                            </com.google.android.material.card.MaterialCardView>
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Баптаулар" android:textColor="#0D1B2A" android:textSize="15sp" android:textStyle="bold"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Тіл, тақырып, құпиялылық" android:textColor="#9AAAB8" android:textSize="12sp" android:layout_marginTop="2dp"/>
+                            </LinearLayout>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#9AAAB8" android:textSize="22sp"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <!--  Logout button  -->
+            <Button android:id="@+id/btnLogout" android:layout_width="match_parent" android:layout_height="54dp" android:text="Шығу" android:textAllCaps="false" android:textColor="#0F9B8E" android:textSize="12sp" android:textStyle="bold" android:backgroundTint="#FFFFFF" app:strokeColor="#E8ECF2" app:cornerRadius="16dp" android:layout_marginTop="2dp"/>
         </LinearLayout>
     </ScrollView>
-
 </FrameLayout>

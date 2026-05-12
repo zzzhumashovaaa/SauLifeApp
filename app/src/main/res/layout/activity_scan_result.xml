@@ -4,120 +4,130 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F6F8F7">
+        android:background="#F7F9FC">
 
+    <!-- Top Bar -->
     <ImageView
             android:id="@+id/btnBack"
             android:layout_width="44dp"
             android:layout_height="44dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="20dp"
             android:padding="10dp"
             android:src="@drawable/ic_back"
-            android:background="@android:color/transparent"
-            app:tint="#1A1A1A"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:tint="#0D1B2A"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
             android:id="@+id/tvTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="88dp"
-            android:layout_marginEnd="20dp"
-            android:text="Найдено лекарство"
-            android:textColor="#111111"
-            android:textSize="26sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Лекарство найдено"
+            android:textColor="#0D1B2A"
+            android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnBack"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
             android:id="@+id/tvSubtitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="20dp"
-            android:text="Проверьте название перед поиском в аптеках"
-            android:textColor="#6B7280"
-            android:textSize="15sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="16dp"
+            android:text="Проверьте название перед поиском"
+            android:textColor="#7A8A9E"
+            android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-    <LinearLayout
+    <!-- Result Card -->
+    <com.google.android.material.card.MaterialCardView
             android:id="@+id/resultCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="20dp"
-            android:orientation="vertical"
-            android:padding="18dp"
-            android:background="@drawable/bg_scan_bottom_panel"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#E8ECF2"
+            app:strokeWidth="1dp"
             app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Название лекарства"
-                android:textColor="#6B7280"
-                android:textSize="14sp" />
-
-        <EditText
-                android:id="@+id/etRawText"
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/bg_input"
-                android:hint="Например: парацетамол"
-                android:inputType="textCapSentences"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:singleLine="true"
-                android:textColor="#111111"
-                android:textColorHint="#9CA3AF"
-                android:textSize="17sp" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
 
-    </LinearLayout>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Название лекарства"
+                    android:textColor="#7A8A9E"
+                    android:textSize="13sp"/>
 
-    <Button
+            <EditText
+                    android:id="@+id/etRawText"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Например: Парацетамол"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textColor="#0D1B2A"
+                    android:textSize="16sp"
+                    android:singleLine="true"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Primary Button -->
+    <com.google.android.material.button.MaterialButton
             android:id="@+id/btnFindInPharmacies"
             android:layout_width="0dp"
-            android:layout_height="54dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="26dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/bg_button"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:text="Найти в аптеках"
             android:textAllCaps="false"
-            android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:backgroundTint="#0F9B8E"
+            android:textColor="@android:color/white"
+            app:cornerRadius="16dp"
             app:layout_constraintTop_toBottomOf="@id/resultCard"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-    <Button
+    <!-- Secondary Button -->
+    <com.google.android.material.button.MaterialButton
             android:id="@+id/btnScanAgain"
             android:layout_width="0dp"
-            android:layout_height="54dp"
-            android:layout_marginStart="20dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginTop="12dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/bg_button_light"
             android:text="Сканировать заново"
             android:textAllCaps="false"
-            android:textColor="#1A8F5A"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:textColor="#0F9B8E"
+            app:strokeColor="#0F9B8E"
+            app:strokeWidth="1dp"
+            app:cornerRadius="16dp"
+            app:backgroundTint="@android:color/white"
             app:layout_constraintTop_toBottomOf="@id/btnFindInPharmacies"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
