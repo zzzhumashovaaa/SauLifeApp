@@ -13,6 +13,7 @@ if (localPropertiesFile.exists()) {
 }
 
 val geminiApiKey = localProperties.getProperty("GEMINI_API_KEY") ?: ""
+
 android {
     namespace = "com.example.saulifeapp"
     compileSdk = 36
@@ -35,6 +36,7 @@ android {
             "GEMINI_API_KEY",
             "\"$geminiApiKey\""
         )
+
     }
 
     buildTypes {

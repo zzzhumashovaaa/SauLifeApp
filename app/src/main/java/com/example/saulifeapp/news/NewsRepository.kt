@@ -1,8 +1,11 @@
 package com.example.saulifeapp.news
 
+import com.example.saulifeapp.BuildConfig
+
+
 object NewsRepository {
 
-    private const val API_KEY = "b202ccc8b6152050466e3270839ffad4"
+    private const val API_KEY = "e152fe01685c7b922a58e66930f9988c"
 
     suspend fun getHealthNews(): List<NewsItem> {
         val queries = listOf(
