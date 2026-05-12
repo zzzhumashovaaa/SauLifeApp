@@ -7,7 +7,7 @@ data class TreatmentMedicine(
     val quantity: Int = 0,
     val expiryDate: String = "",
     val category: String = "",
-    val isCurrent: Boolean = false,
+    val current: Boolean = false,
     val time: String = "",
     val timesPerDay: Int = 0,
     val startDate: String = "",

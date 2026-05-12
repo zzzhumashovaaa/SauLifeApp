@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:cardCornerRadius="22dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="#FFFFFF">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="58dp"
+                    android:layout_height="58dp"
+                    android:gravity="center"
+                    android:text="⏰"
+                    android:textSize="28sp"
+                    android:background="@drawable/bg_icon_teal" />
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="14dp"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Пора принять Ибупрофен 200 мг"
+                        android:textColor="#0F172A"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif-black" />
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Время приёма: 12:00 · После еды"
+                        android:textColor="#64748B"
+                        android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5 мин назад"
+                    android:textColor="#64748B"
+                    android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/btnTaken"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="✓ Принял"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-black"
+                    android:background="@drawable/bg_button_taken" />
+
+            <TextView
+                    android:id="@+id/btnDelay"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center"
+                    android:text="⏱ Отложить"
+                    android:textColor="#334155"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-black"
+                    android:background="@drawable/bg_button_delay" />
+
+            <TextView
+                    android:id="@+id/btnSkip"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center"
+                    android:text="× Пропустить"
+                    android:textColor="#EF4444"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-black"
+                    android:background="@drawable/bg_button_skip" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

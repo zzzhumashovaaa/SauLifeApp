@@ -197,7 +197,7 @@ class TreatmentFragment : Fragment() {
             val medicine = TreatmentMedicine(
                 name = name, dosage = dosage, quantity = quantityText.toIntOrNull() ?: 0,
                 expiryDate = expiry, category = if (category.isEmpty()) "Medicine" else category,
-                isCurrent = isCurrent, time = if (isCurrent) time else "",
+                current = isCurrent, time = if (isCurrent) time else "",
                 timesPerDay = if (isCurrent) timesPerDayText.toIntOrNull() ?: 0 else 0
             )
             saveMedicineToFirestore(medicine)
@@ -262,11 +262,11 @@ class TreatmentFragment : Fragment() {
     }
 
     private fun updateUI() {
-        val currentTreatment = medicines.filter { it.isCurrent }
+        val currentTreatment = medicines.filter { it.current }
         val filteredMedicines = when (selectedFilter) {
             TreatmentFilter.ALL      -> medicines
-            TreatmentFilter.ACTIVE   -> medicines.filter { it.isCurrent }
-            TreatmentFilter.FINISHED -> medicines.filter { !it.isCurrent && it.quantity == 0 }
+            TreatmentFilter.ACTIVE   -> medicines.filter { it.current }
+            TreatmentFilter.FINISHED -> medicines.filter { !it.current && it.quantity == 0 }
             TreatmentFilter.EXPIRED  -> medicines.filter { isExpiredMedicine(it) }
         }
 
