@@ -23,6 +23,13 @@ class EditProfileActivity : AppCompatActivity() {
     private var originalProfileSnapshot: String = ""
     private var profileAlreadyCompleted: Boolean = false
 
+    private val bloodTypes = listOf(
+        "O(I) Rh+", "O(I) Rh−",
+        "A(II) Rh+", "A(II) Rh−",
+        "B(III) Rh+", "B(III) Rh−",
+        "AB(IV) Rh+", "AB(IV) Rh−"
+    )
+
     private val cities = listOf(
         "Алматы", "Астана", "Шымкент", "Караганда",
         "Актобе", "Тараз", "Павлодар", "Семей",
@@ -36,9 +43,19 @@ class EditProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupCityDropdown()
+        setupBloodTypeDropdown()
         setupGenderLogic()
         setupButtons()
         loadProfile()
+    }
+
+    private fun setupBloodTypeDropdown() {
+        val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_dropdown_item_1line,
+            bloodTypes
+        )
+        binding.autoBloodType.setAdapter(adapter)
     }
 
     private fun setupCityDropdown() {
@@ -120,6 +137,11 @@ class EditProfileActivity : AppCompatActivity() {
                     document.getString("currentMedications").orEmpty()
                 )
 
+                binding.autoBloodType.setText(
+                    document.getString("bloodType").orEmpty(),
+                    false
+                )
+
                 val gender = document.getString("gender").orEmpty()
 
                 val isPregnant = document.getBoolean("isPregnant")
@@ -188,6 +210,8 @@ class EditProfileActivity : AppCompatActivity() {
         val chronic = binding.editChronic.text.toString().trim()
 
         val currentMeds = binding.editCurrentMeds.text.toString().trim()
+
+        val bloodType = binding.autoBloodType.text.toString().trim()
 
         // ChipGroup арқылы жыныс анықтау
         val gender = when {
@@ -269,6 +293,7 @@ class EditProfileActivity : AppCompatActivity() {
             allergies          = allergies,
             chronicDiseases    = chronic,
             currentMedications = currentMeds,
+            bloodType          = bloodType,
             profileCompleted   = true
         )
 
@@ -340,6 +365,7 @@ class EditProfileActivity : AppCompatActivity() {
             binding.editAge.text.toString().trim(),
             gender,
             pregnancy,
+            binding.autoBloodType.text.toString().trim(),
             binding.editAllergies.text.toString().trim(),
             binding.editChronic.text.toString().trim(),
             binding.editCurrentMeds.text.toString().trim()

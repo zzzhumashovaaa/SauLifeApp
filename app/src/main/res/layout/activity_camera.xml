@@ -6,6 +6,7 @@
         android:layout_height="match_parent"
         android:background="#000000">
 
+    <!-- Camera Preview -->
     <androidx.camera.view.PreviewView
             android:id="@+id/previewView"
             android:layout_width="0dp"
@@ -13,16 +14,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/bottomPanel"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- Top Bar -->
     <LinearLayout
             android:id="@+id/topBar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
             android:orientation="horizontal"
+            android:padding="20dp"
             android:gravity="center_vertical"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,11 +30,11 @@
 
         <ImageButton
                 android:id="@+id/btnBack"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:src="@drawable/ic_back"
-                app:tint="#FFFFFF"
-                android:background="@android:color/transparent" />
+                android:background="@android:color/transparent"
+                app:tint="#FFFFFF"/>
 
         <TextView
                 android:id="@+id/textScanHint"
@@ -42,69 +42,74 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Наведите камеру на название лекарства"
+                android:text="Наведите камеру на лекарство"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
-                android:textStyle="bold" />
-
+                android:textStyle="bold"/>
     </LinearLayout>
 
+    <!-- Scan Frame -->
     <View
             android:id="@+id/scanFrame"
-            android:layout_width="300dp"
-            android:layout_height="350dp"
+            android:layout_width="280dp"
+            android:layout_height="340dp"
             android:background="@drawable/bg_scan_frame"
             app:layout_constraintTop_toBottomOf="@id/topBar"
             app:layout_constraintBottom_toTopOf="@id/bottomPanel"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-    <TextView
-            android:id="@+id/textResultTitle"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="gone" />
-
-    <TextView
-            android:id="@+id/textResult"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="gone" />
-
-    <LinearLayout
+    <!-- Bottom Panel -->
+    <com.google.android.material.card.MaterialCardView
             android:id="@+id/bottomPanel"
             android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:orientation="vertical"
-            android:padding="20dp"
-            android:background="@drawable/bg_scan_bottom_panel"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:strokeColor="#E8ECF2"
+            app:strokeWidth="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-        <Button
-                android:id="@+id/btnCapture"
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/bg_button_taken"
-                android:text="Сканировать"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
 
-        <Button
-                android:id="@+id/btnUpload"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_button_taken"
-                android:text="Загрузить фото"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+            <!-- Scan Button -->
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCapture"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="Сканировать"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="#0F9B8E"
+                    app:cornerRadius="16dp"/>
 
-    </LinearLayout>
+            <!-- Upload Button -->
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnUpload"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Загрузить фото"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#0F9B8E"
+                    app:cornerRadius="16dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="#0F9B8E"
+                    app:backgroundTint="@android:color/white"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

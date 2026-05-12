@@ -17,5 +17,6 @@ data class UserProfile(
     var allergies: String = "",
     var chronicDiseases: String = "",
     var currentMedications: String = "",
+    var bloodType: String = "",
     var profileCompleted: Boolean = false
 )
