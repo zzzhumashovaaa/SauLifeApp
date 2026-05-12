@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="16dp"
-                    android:text="Уведомления"
+                    android:text="Хабарламалар"
                     android:textColor="#0F172A"
                     android:textSize="24dp"
                     android:fontFamily="sans-serif-black" />
@@ -68,7 +68,7 @@
                         android:id="@+id/chipAll"
                         android:layout_width="wrap_content"
                         android:layout_height="44dp"
-                        android:text="▦  Все"
+                        android:text="▦  Барлығы"
                         android:checked="true"
                         android:checkable="true"
                         app:checkedIconVisible="false"
@@ -80,7 +80,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="44dp"
                         android:layout_marginStart="8dp"
-                        android:text="💊 Таблетки"
+                        android:text="💊 Дәрілер"
                         android:checkable="true"
                         app:checkedIconVisible="false" />
 
@@ -89,7 +89,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="44dp"
                         android:layout_marginStart="8dp"
-                        android:text="⏰ Приём"
+                        android:text="⏰ Қабылдау"
                         android:checkable="true"
                         app:checkedIconVisible="false" />
 
@@ -98,7 +98,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="44dp"
                         android:layout_marginStart="8dp"
-                        android:text="♡ Здоровье"
+                        android:text="♡ Денсаулық"
                         android:checkable="true"
                         app:checkedIconVisible="false" />
 
@@ -107,7 +107,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="44dp"
                         android:layout_marginStart="8dp"
-                        android:text="⚠ Важные"
+                        android:text="⚠ Маңызды"
                         android:checkable="true"
                         app:checkedIconVisible="false" />
 
@@ -115,12 +115,12 @@
 
         </HorizontalScrollView>
 
-        <!-- ТАБЛЕТКИ -->
+        <!-- ТАБЛЕТКАЛАР -->
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="34dp"
-                android:text="💊  Таблетки"
+                android:text="💊  Дәрілер"
                 android:textColor="#0F172A"
                 android:textSize="20sp"
                 android:fontFamily="sans-serif-black" />
@@ -136,12 +136,13 @@
         <include
                 android:id="@+id/layoutStock"
                 layout="@layout/item_notification_stock" />
-        <!-- ПРИЁМ -->
+
+        <!-- ҚАБЫЛДАУ -->
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="⏰  Напоминания о приёме"
+                android:text="⏰  Қабылдау еске салғыштары"
                 android:textColor="#0F172A"
                 android:textSize="20sp"
                 android:fontFamily="sans-serif-black" />
@@ -153,12 +154,13 @@
         <include
                 android:id="@+id/layoutMissed"
                 layout="@layout/item_notification_missed" />
-        <!-- ЗДОРОВЬЕ -->
+
+        <!-- ДЕНСАУЛЫҚ -->
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="♡  Здоровье / AI анализ"
+                android:text="♡  Денсаулық / AI талдау"
                 android:textColor="#0F172A"
                 android:textSize="20sp"
                 android:fontFamily="sans-serif-black" />
@@ -170,12 +172,13 @@
         <include
                 android:id="@+id/layoutHealthCheck"
                 layout="@layout/item_notification_health_check" />
-        <!-- ВАЖНЫЕ -->
+
+        <!-- МАҢЫЗДЫ -->
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="⚠  Срочные / Важные"
+                android:text="⚠  Шұғыл / Маңызды"
                 android:textColor="#0F172A"
                 android:textSize="20sp"
                 android:fontFamily="sans-serif-black" />
@@ -188,7 +191,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="💬  AI чат / Ассистент"
+                android:text="💬  AI чат / Көмекші"
                 android:textColor="#0F172A"
                 android:textSize="20sp"
                 android:fontFamily="sans-serif-black" />

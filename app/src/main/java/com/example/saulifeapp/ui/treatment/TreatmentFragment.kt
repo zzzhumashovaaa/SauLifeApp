@@ -1,5 +1,6 @@
 package com.example.saulifeapp.ui.treatment
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -22,6 +23,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
+import java.util.Calendar
 
 class TreatmentFragment : Fragment() {
 
@@ -109,10 +111,11 @@ class TreatmentFragment : Fragment() {
         val etName = view.findViewById<TextInputEditText>(R.id.etMedicineName)
         val etDosage = view.findViewById<TextInputEditText>(R.id.etDosage)
         val etQuantity = view.findViewById<TextInputEditText>(R.id.etQuantity)
-        val etExpiry = view.findViewById<TextInputEditText>(R.id.etExpiryDate)
         val etCategory = view.findViewById<TextInputEditText>(R.id.etCategory)
         val etTime = view.findViewById<TextInputEditText>(R.id.etTime)
         val etTimesPerDay = view.findViewById<TextInputEditText>(R.id.etTimesPerDay)
+        val etExpiry = view.findViewById<TextInputEditText>(R.id.etExpiryDate)
+
         val cbCurrent = view.findViewById<CheckBox>(R.id.cbCurrent)
         val layoutCurrentFields = view.findViewById<View>(R.id.layoutCurrentTreatmentFields)
         val btnSave = view.findViewById<MaterialButton>(R.id.btnSaveMedicine)
@@ -142,44 +145,97 @@ class TreatmentFragment : Fragment() {
             layoutCurrentFields.visibility = if (isChecked) View.VISIBLE else View.GONE
         }
 
+        // =========================
+        // 📅 CALENDAR FIX HERE
+        // =========================
+        etExpiry.setOnClickListener {
+
+            val calendar = Calendar.getInstance()
+
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+            val datePicker = DatePickerDialog(
+                requireContext(),
+                { _, selectedYear, selectedMonth, selectedDay ->
+
+                    val formattedDate = String.format(
+                        "%04d-%02d-%02d",
+                        selectedYear,
+                        selectedMonth + 1,
+                        selectedDay
+                    )
+
+                    etExpiry.setText(formattedDate)
+
+                },
+                year,
+                month,
+                day
+            )
+
+            datePicker.show()
+        }
+
+        // =========================
+        // Medicine search logic
+        // =========================
         etName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val userInput = s.toString().trim()
-                if (userInput.length < 3) { rvSuggestions.visibility = View.GONE; return }
+                if (userInput.length < 3) {
+                    rvSuggestions.visibility = View.GONE
+                    return
+                }
+
                 val query = normalizeMedicineName(userInput)
+
                 lifecycleScope.launch {
                     try {
                         val response = RetrofitClient.api.searchMedicines("generic_name:$query*")
+
                         val medicineNames = response.results
                             ?.mapNotNull { it.generic_name ?: it.brand_name }
                             ?.map { it.lowercase().replaceFirstChar { c -> c.uppercase() } }
                             ?.distinct() ?: emptyList()
+
                         dosageOptions = response.results
                             ?.mapNotNull { r ->
                                 val s = r.active_ingredients?.firstOrNull()?.strength.orEmpty()
                                 val f = r.dosage_form.orEmpty()
                                 "$s $f".trim().takeIf { it.isNotEmpty() }
                             }?.distinct() ?: emptyList()
+
                         suggestionMode = "name"
                         suggestionAdapter.updateData(medicineNames)
-                        rvSuggestions.visibility = if (medicineNames.isNotEmpty()) View.VISIBLE else View.GONE
+                        rvSuggestions.visibility =
+                            if (medicineNames.isNotEmpty()) View.VISIBLE else View.GONE
+
                     } catch (e: Exception) {
                         rvSuggestions.visibility = View.GONE
                     }
                 }
             }
+
             override fun afterTextChanged(s: Editable?) {}
         })
 
         etDosage.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus && dosageOptions.isNotEmpty()) {
-                suggestionMode = "dosage"; suggestionAdapter.updateData(dosageOptions)
+                suggestionMode = "dosage"
+                suggestionAdapter.updateData(dosageOptions)
                 rvSuggestions.visibility = View.VISIBLE
             }
         }
 
+        // =========================
+        // SAVE BUTTON
+        // =========================
         btnSave.setOnClickListener {
+
             val name = etName.text.toString().trim()
             val dosage = etDosage.text.toString().trim()
             val quantityText = etQuantity.text.toString().trim()
@@ -189,17 +245,37 @@ class TreatmentFragment : Fragment() {
             val timesPerDayText = etTimesPerDay.text.toString().trim()
             val isCurrent = cbCurrent.isChecked
 
-            if (name.isEmpty()) { etName.error = "Дәрі атауын енгізіңіз"; return@setOnClickListener }
-            if (quantityText.isEmpty()) { etQuantity.error = "Санын енгізіңіз"; return@setOnClickListener }
-            if (isCurrent && timesPerDayText.isEmpty()) { etTimesPerDay.error = "Күніне неше рет қабылдайтынын енгізіңіз"; return@setOnClickListener }
-            if (isCurrent && time.isEmpty()) { etTime.error = "Қабылдау уақытын енгізіңіз"; return@setOnClickListener }
+            if (name.isEmpty()) {
+                etName.error = "Дәрі атауын енгізіңіз"
+                return@setOnClickListener
+            }
+
+            if (quantityText.isEmpty()) {
+                etQuantity.error = "Санын енгізіңіз"
+                return@setOnClickListener
+            }
+
+            if (isCurrent && timesPerDayText.isEmpty()) {
+                etTimesPerDay.error = "Күніне неше рет қабылдайды?"
+                return@setOnClickListener
+            }
+
+            if (isCurrent && time.isEmpty()) {
+                etTime.error = "Қабылдау уақытын енгізіңіз"
+                return@setOnClickListener
+            }
 
             val medicine = TreatmentMedicine(
-                name = name, dosage = dosage, quantity = quantityText.toIntOrNull() ?: 0,
-                expiryDate = expiry, category = if (category.isEmpty()) "Medicine" else category,
-                current = isCurrent, time = if (isCurrent) time else "",
+                name = name,
+                dosage = dosage,
+                quantity = quantityText.toIntOrNull() ?: 0,
+                expiryDate = expiry,
+                category = if (category.isEmpty()) "Medicine" else category,
+                current = isCurrent,
+                time = if (isCurrent) time else "",
                 timesPerDay = if (isCurrent) timesPerDayText.toIntOrNull() ?: 0 else 0
             )
+
             saveMedicineToFirestore(medicine)
             bottomSheetDialog.dismiss()
         }
