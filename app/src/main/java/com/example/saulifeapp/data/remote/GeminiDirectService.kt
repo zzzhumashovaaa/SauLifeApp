@@ -1,12 +1,13 @@
 package com.example.saulifeapp.data.remote
 
+import com.example.saulifeapp.BuildConfig
 import com.example.saulifeapp.ui.profile.UserProfile
 import com.example.saulifeapp.ui.chat.ChatMessage
 import com.google.ai.client.generativeai.GenerativeModel
 
 class GeminiDirectService {
 
-    private val apiKey = "AIzaSyAlB_fnTPxplvDzolbcWO5PCBez_Y7HdUE"
+    private val apiKey = BuildConfig.GEMINI_API_KEY
 
     private val model = GenerativeModel(
         modelName = "gemini-2.5-flash-lite",

@@ -21,13 +21,6 @@ class ProductAdapter(
             binding.textProductVolume.text = product.volume
             binding.textPrice.text = "$" + String.format(Locale.US, "%.2f", product.price)
 
-            if (product.oldPrice != null) {
-                binding.textOldPrice.text = "$" + String.format(Locale.US, "%.2f", product.oldPrice)
-                binding.textOldPrice.paintFlags =
-                    binding.textOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-            } else {
-                binding.textOldPrice.text = ""
-            }
 
             binding.btnAdd.setOnClickListener {
                 onAddClick(product)

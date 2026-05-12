@@ -17,6 +17,8 @@
         <activity android:name=".ui.reminders.RemindersActivity" android:exported="false"/>
         <receiver android:name=".ui.reminders.ReminderReceiver" android:exported="false"/>
         <activity android:name=".NewsArticleActivity"/>
+        <activity android:name=".ui.medicine.MedicineSearchActivity" />
+        <activity android:name=".ui.medicine.MedicineDetailActivity" />
         <activity android:name=".RegisterActivity" android:exported="false"/>
         <activity android:name=".LoginActivity" android:exported="false"/>
         <activity android:name=".ui.notification.NotificationsActivity"/>

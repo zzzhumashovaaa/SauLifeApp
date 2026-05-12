@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F6F7FB">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+        <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_back"
+                android:padding="10dp"
+                android:contentDescription="Back"
+                app:tint="#111827" />
+
+        <TextView
+                android:id="@+id/textMedicineName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Парацетамол"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#111827"
+                android:layout_marginTop="18dp" />
+
+        <TextView
+                android:id="@+id/textMedicineType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Таблетки • 500 мг"
+                android:textSize="15sp"
+                android:textColor="#6B7280"
+                android:layout_marginTop="6dp" />
+
+        <TextView
+                android:id="@+id/textPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="450 ₸"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#2563EB"
+                android:layout_marginTop="16dp" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:padding="18dp"
+                android:layout_marginTop="20dp">
+
+            <TextView
+                    android:text="Кімге арналған"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="#111827"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:id="@+id/textForWhom"
+                    android:textSize="14sp"
+                    android:textColor="#374151"
+                    android:layout_marginTop="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:text="Не үшін"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="#111827"
+                    android:layout_marginTop="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:id="@+id/textPurpose"
+                    android:textSize="14sp"
+                    android:textColor="#374151"
+                    android:layout_marginTop="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:text="Қашан қабылдау керек"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="#111827"
+                    android:layout_marginTop="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:id="@+id/textWhenToTake"
+                    android:textSize="14sp"
+                    android:textColor="#374151"
+                    android:layout_marginTop="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:text="Нұсқаулық"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="#111827"
+                    android:layout_marginTop="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:id="@+id/textInstruction"
+                    android:textSize="14sp"
+                    android:textColor="#374151"
+                    android:layout_marginTop="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:text="Қарсы көрсетілімдер"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="#DC2626"
+                    android:layout_marginTop="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:id="@+id/textContraindications"
+                    android:textSize="14sp"
+                    android:textColor="#374151"
+                    android:layout_marginTop="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <Button
+                android:id="@+id/btnAddToCart"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="24dp"
+                android:text="Себетке қосу"
+                android:textAllCaps="false" />
+
+    </LinearLayout>
+
+</ScrollView>

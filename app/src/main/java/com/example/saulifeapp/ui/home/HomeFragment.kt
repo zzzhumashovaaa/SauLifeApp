@@ -14,7 +14,6 @@ import com.example.saulifeapp.CameraActivity
 import com.example.saulifeapp.Product
 import com.example.saulifeapp.ProductAdapter
 import com.example.saulifeapp.R
-import com.example.saulifeapp.cart.CartRepository
 import com.example.saulifeapp.databinding.FragmentHomeBinding
 import com.example.saulifeapp.news.NewsAdapter
 import com.example.saulifeapp.news.NewsRepository
@@ -27,19 +26,22 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.cancellation.CancellationException
+import com.example.saulifeapp.ui.medicine.MedicineDetailActivity
+import com.example.saulifeapp.ui.medicine.MedicineLocalRepository
+import com.example.saulifeapp.ui.medicine.MedicineSearchAdapter
+import com.example.saulifeapp.ui.treatment.TreatmentFragment
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private lateinit var medicineSearchAdapter: MedicineSearchAdapter
 
     private lateinit var quickActionAdapter: HomeQuickActionAdapter
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var healthNewsAdapter: HealthNewsAdapter
     private lateinit var cartAdapter: ProductAdapter
-    private lateinit var saleAdapter: ProductAdapter
 
-    private val cartRepository = CartRepository()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,13 +55,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupMedicineSearch()
         setupHeader()
         setupClicks()
         setupQuickActions()
         setupHealthInsights()
         setupNews()
         setupPopularProducts()
-        setupSaleProducts()
         loadNews()
     }
 
@@ -94,11 +96,60 @@ class HomeFragment : Fragment() {
                 }
             }
     }
+    private fun setupMedicineSearch() {
+        binding.btnSearchIcon.setOnClickListener {
+
+            val query = binding.editSearch.text.toString().trim()
+
+            val result =
+                MedicineLocalRepository.search(query)
+
+            if (query.isNotEmpty() && result.isNotEmpty()) {
+
+                medicineSearchAdapter.updateList(result)
+
+                binding.recyclerMedicineSearchResults.visibility =
+                    View.VISIBLE
+
+            } else {
+
+                binding.recyclerMedicineSearchResults.visibility =
+                    View.GONE
+            }
+        }
+        medicineSearchAdapter = MedicineSearchAdapter(emptyList()) { medicine ->
+            val intent = Intent(requireContext(), MedicineDetailActivity::class.java)
+            intent.putExtra("medicine_id", medicine.id)
+            startActivity(intent)
+
+            binding.recyclerMedicineSearchResults.visibility = View.GONE
+            binding.editSearch.text.clear()
+        }
+
+        binding.recyclerMedicineSearchResults.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = medicineSearchAdapter
+        }
+
+        binding.editSearch.setOnEditorActionListener { _, _, _ ->
+            val query = binding.editSearch.text.toString().trim()
+            val result = MedicineLocalRepository.search(query)
+
+            if (query.isNotEmpty() && result.isNotEmpty()) {
+                medicineSearchAdapter.updateList(result)
+                binding.recyclerMedicineSearchResults.visibility = View.VISIBLE
+            } else {
+                binding.recyclerMedicineSearchResults.visibility = View.GONE
+            }
+
+            true
+        }
+    }
 
     private fun setupQuickActions() {
         val actions = listOf(
             HomeQuickAction("Сканерлеу", "Дәріні тану", R.drawable.ic_scan, HomeQuickActionType.SCAN),
-            HomeQuickAction("Аптека", "Бағаны табу", R.drawable.ic_pharmacy, HomeQuickActionType.PHARMACY),
+            HomeQuickAction("Аптека", "Үй аптечкасы", R.drawable.ic_pharmacy, HomeQuickActionType.PHARMACY),
             HomeQuickAction("AI көмекші", "Кеңес алу", R.drawable.ic_ai, HomeQuickActionType.AI),
             HomeQuickAction("Еске салу", "Қабылдау уақыты", R.drawable.ic_reminder, HomeQuickActionType.REMINDER),
             HomeQuickAction("Рецепт", "Фото жүктеу", R.drawable.ic_prescription, HomeQuickActionType.PRESCRIPTION)
@@ -107,7 +158,8 @@ class HomeFragment : Fragment() {
         quickActionAdapter = HomeQuickActionAdapter(actions) { action ->
             when (action.type) {
                 HomeQuickActionType.SCAN -> startActivity(Intent(requireContext(), CameraActivity::class.java))
-                HomeQuickActionType.PHARMACY -> openPharmacySearch()
+                HomeQuickActionType.PHARMACY -> startActivity(Intent(requireContext(),
+                    TreatmentFragment::class.java))
                 HomeQuickActionType.AI -> Toast.makeText(requireContext(), "AI чат төменгі мәзірде ашылады", Toast.LENGTH_SHORT).show()
                 HomeQuickActionType.REMINDER -> startActivity(Intent(requireContext(), RemindersActivity::class.java))
                 HomeQuickActionType.PRESCRIPTION -> Toast.makeText(requireContext(), "Рецепт сканері келесі этапта қосылады", Toast.LENGTH_SHORT).show()
@@ -193,54 +245,59 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupPopularProducts() {
-        val popularList = listOf(
-            Product("Panadol", "20pcs", 15.99, null, R.drawable.panadol),
-            Product("Bodrex Herbal", "100ml", 7.99, null, R.drawable.bodrex_herbal)
-        )
 
-        cartAdapter = ProductAdapter(popularList) { product ->
-            cartRepository.addToCart(product) { success ->
-                if (!isAdded) return@addToCart
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
 
-                Toast.makeText(
-                    requireContext(),
-                    if (success) "Себетке қосылды" else "Қате шықты",
-                    Toast.LENGTH_SHORT
-                ).show()
+        FirebaseFirestore.getInstance()
+            .collection("users")
+            .document(uid)
+            .collection("cart")
+            .get()
+            .addOnSuccessListener { documents ->
+
+                val productList = mutableListOf<Product>()
+
+                for (doc in documents) {
+
+                    val name = doc.getString("name") ?: ""
+                    val type = doc.getString("type") ?: ""
+                    val dosage = doc.getString("dosage") ?: ""
+                    val price = doc.getDouble("price") ?: 0.0
+
+                    productList.add(
+                        Product(
+                            name = "$name - $type",
+                            volume = dosage,
+                            price = price,
+                            oldPrice = null,
+                            imageRes = R.drawable.logo_icon
+                        )
+                    )
+                }
+
+                cartAdapter = ProductAdapter(productList) { product ->
+
+                    Toast.makeText(
+                        requireContext(),
+                        product.name,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                binding.recyclerCart.apply {
+
+                    layoutManager = LinearLayoutManager(
+                        requireContext(),
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                    )
+
+                    adapter = cartAdapter
+                    setHasFixedSize(true)
+                }
             }
-        }
-
-        binding.recyclerCart.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            adapter = cartAdapter
-            setHasFixedSize(true)
-        }
     }
 
-    private fun setupSaleProducts() {
-        val saleList = listOf(
-            Product("OBH Combi", "75ml", 9.99, 10.99, R.drawable.logo_icon),
-            Product("Betadine", "50ml", 6.99, 8.99, R.drawable.bodrex_herbal)
-        )
-
-        saleAdapter = ProductAdapter(saleList) { product ->
-            cartRepository.addToCart(product) { success ->
-                if (!isAdded) return@addToCart
-
-                Toast.makeText(
-                    requireContext(),
-                    if (success) "Себетке қосылды" else "Қате шықты",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-
-        binding.recyclerSale.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            adapter = saleAdapter
-            setHasFixedSize(true)
-        }
-    }
 
     private fun setupClicks() {
         binding.btnNotifications.setOnClickListener {
@@ -248,34 +305,17 @@ class HomeFragment : Fragment() {
         }
 
         binding.layoutSearch.setOnClickListener {
-            openPharmacySearch()
+            binding.editSearch.requestFocus()
         }
 
         binding.btnShopNow.setOnClickListener {
-            openPharmacySearch()
         }
 
-        binding.btnSos.setOnClickListener {
-            Toast.makeText(
-                requireContext(),
-                "SOS: қан тобы, аллергия және жедел контакт кейін Profile арқылы толтырылады",
-                Toast.LENGTH_LONG
-            ).show()
-        }
 
         binding.textSeeAllCart.setOnClickListener {
             Toast.makeText(requireContext(), "Толық себет кейін", Toast.LENGTH_SHORT).show()
         }
 
-        binding.textSeeAllSale.setOnClickListener {
-            Toast.makeText(requireContext(), "Барлық жеңілдіктер", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun openPharmacySearch() {
-        val intent = Intent(requireContext(), PharmacyWebActivity::class.java)
-        intent.putExtra("url", "https://www.poisklekarstv.kz/search?lat=43.273564&lng=76.914851&q=%D0%BF%D0%B0%D1%80%D0%B0%D1%86%D0%B5%D1%82%D0%B0%D0%BC%D0%BE%D0%BB&location=%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D1%82%D0%B0%D0%BD%2C+%D0%90%D0%BB%D0%BC%D0%B0%D1%82%D1%8B")
-        startActivity(intent)
     }
 
     override fun onDestroyView() {
