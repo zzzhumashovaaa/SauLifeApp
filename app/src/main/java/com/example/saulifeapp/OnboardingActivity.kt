@@ -1,4 +1,5 @@
 package com.example.saulifeapp
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -12,18 +13,18 @@ class OnboardingActivity : AppCompatActivity() {
     private val onboardingItems = listOf(
         OnboardingItem(
             R.drawable.onboard_img1,
-            "ONE-STOP HEALTHCARE\nSOLUTION",
-            "Clinical excellence must be the priority for any health care service provider"
+            "БІРЫҢҒАЙ МЕДИЦИНАЛЫҚ\nШАРАЛАР ЖҮЙЕСІ",
+            "Медициналық қызметтің басты мақсаты — сапалы және сенімді көмек көрсету"
         ),
         OnboardingItem(
             R.drawable.onboard_img2,
-            "Helping humans become\nhappier & healthier!",
-            "An easy-to-use and reliable app that helps you remember to take your meds at the right time."
+            "Адамдарды бақытты және\nдені сау етуге көмектесу!",
+            "Дәрілерді уақытында қабылдауды еске салатын қарапайым әрі сенімді қосымша."
         ),
         OnboardingItem(
             R.drawable.onboard_img3,
-            "Be in control of your\nmeds",
-            "An easy-to-use and reliable app that helps you remember to take your meds at the right time."
+            "Дәрілерді толық бақылауда\nұстаңыз",
+            "Дәрілерді уақытында қабылдауды еске салатын қарапайым әрі сенімді қосымша."
         )
     )
 
@@ -52,8 +53,8 @@ class OnboardingActivity : AppCompatActivity() {
                     updateDots(position)
 
                     binding.btnGetStarted.text =
-                        if (position == onboardingItems.lastIndex) "Continue"
-                        else "Get Started"
+                        if (position == onboardingItems.lastIndex) "Жалғастыру"
+                        else "Бастау"
                 }
             }
         )

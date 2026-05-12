@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="Напоминания"
+                android:text="Еске салғыштар"
                 android:textColor="#111827"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -52,7 +52,7 @@
                     android:id="@+id/layoutMedicineName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Название лекарства"
+                    android:hint="Дәрі атауы"
                     app:boxBackgroundMode="outline"
                     app:boxCornerRadiusBottomEnd="18dp"
                     app:boxCornerRadiusBottomStart="18dp"
@@ -69,7 +69,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
-                    android:hint="Дозировка"
+                    android:hint="Дозасы"
                     app:boxBackgroundMode="outline"
                     app:boxCornerRadiusBottomEnd="18dp"
                     app:boxCornerRadiusBottomStart="18dp"
@@ -87,7 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
-                    android:hint="Время"
+                    android:hint="Уақыты"
                     app:boxBackgroundMode="outline"
                     app:boxCornerRadiusBottomEnd="18dp"
                     app:boxCornerRadiusBottomStart="18dp"
@@ -107,7 +107,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:layout_marginTop="16dp"
-                    android:text="Добавить напоминание"
+                    android:text="Еске салғыш қосу"
                     android:textAllCaps="false"
                     android:textSize="16sp"
                     app:cornerRadius="18dp" />
@@ -120,7 +120,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:gravity="center"
-            android:text="Пока нет напоминаний"
+            android:text="Әзірге еске салғыш жоқ"
             android:textColor="#6B7280"
             android:textSize="15sp" />
 

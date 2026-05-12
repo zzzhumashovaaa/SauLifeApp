@@ -91,7 +91,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:hint="Название лекарства"
+                        android:hint="Дәрі атауы"
                         app:boxCornerRadiusTopStart="16dp"
                         app:boxCornerRadiusTopEnd="16dp"
                         app:boxCornerRadiusBottomStart="16dp"
@@ -121,7 +121,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="14dp"
-                        android:hint="Дозировка, например 500mg"
+                        android:hint="Дозасы, мысалы 500мг"
                         app:boxCornerRadiusTopStart="16dp"
                         app:boxCornerRadiusTopEnd="16dp"
                         app:boxCornerRadiusBottomStart="16dp"
@@ -151,7 +151,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:layout_marginEnd="7dp"
-                            android:hint="Количество"
+                            android:hint="Саны"
                             app:boxCornerRadiusTopStart="16dp"
                             app:boxCornerRadiusTopEnd="16dp"
                             app:boxCornerRadiusBottomStart="16dp"
@@ -175,7 +175,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:layout_marginStart="7dp"
-                            android:hint="Категория"
+                            android:hint="Санат"
                             app:boxCornerRadiusTopStart="16dp"
                             app:boxCornerRadiusTopEnd="16dp"
                             app:boxCornerRadiusBottomStart="16dp"
@@ -200,24 +200,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="14dp"
-                        android:hint="Срок годности, 2026-12-01"
-                        app:boxCornerRadiusTopStart="16dp"
-                        app:boxCornerRadiusTopEnd="16dp"
-                        app:boxCornerRadiusBottomStart="16dp"
-                        app:boxCornerRadiusBottomEnd="16dp"
-                        app:boxStrokeColor="#0F9B8E"
-                        app:hintTextColor="#0F9B8E">
+                        android:hint="Жарамдылық мерзімі">
 
                     <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etExpiryDate"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
-                            android:inputType="date"
-                            android:textColor="#1A2B2B"
-                            android:textSize="15sp" />
-
+                            android:focusable="false"
+                            android:clickable="true"
+                            android:cursorVisible="false"
+                            android:inputType="none"
+                            android:drawableEnd="@drawable/ic_calendar"
+                            android:paddingEnd="12dp"/>
                 </com.google.android.material.textfield.TextInputLayout>
-
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -240,7 +235,7 @@
                         android:id="@+id/cbCurrent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Я сейчас принимаю это лекарство"
+                        android:text="Мен қазір осы дәріні қабылдап жүрмін"
                         android:textColor="#1A2B2B"
                         android:textSize="15sp"
                         android:fontFamily="sans-serif-medium"
@@ -267,7 +262,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="14dp"
-                            android:hint="Сколько раз в день?"
+                            android:hint="Күніне неше рет?"
                             app:boxCornerRadiusTopStart="16dp"
                             app:boxCornerRadiusTopEnd="16dp"
                             app:boxCornerRadiusBottomStart="16dp"
@@ -290,7 +285,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="14dp"
-                            android:hint="Время приёма, например 09:00"
+                            android:hint="Қабылдау уақыты, мысалы 09:00"
                             app:boxCornerRadiusTopStart="16dp"
                             app:boxCornerRadiusTopEnd="16dp"
                             app:boxCornerRadiusBottomStart="16dp"
@@ -319,7 +314,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginTop="22dp"
-                android:text="Сохранить"
+                android:text="Сақтау"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
