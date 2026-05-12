@@ -46,12 +46,12 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun setupGenderLogic() {
-        binding.radioGroupGender.setOnCheckedChangeListener { _, checkedId ->
-            if (checkedId == R.id.radioFemale) {
+        binding.chipGroupGender.setOnCheckedStateChangeListener { _, checkedIds ->
+            if (checkedIds.contains(R.id.chipFemale)) {
                 binding.layoutPregnancy.visibility = View.VISIBLE
             } else {
                 binding.layoutPregnancy.visibility = View.GONE
-                binding.radioGroupPregnancy.clearCheck()
+                binding.chipGroupPregnancy.clearCheck()
             }
         }
     }
@@ -90,9 +90,7 @@ class EditProfileActivity : AppCompatActivity() {
                 binding.autoCity.setText(document.getString("city").orEmpty(), false)
 
                 val age = document.getLong("age")?.toInt() ?: 0
-                if (age > 0) {
-                    binding.editAge.setText(age.toString())
-                }
+                if (age > 0) binding.editAge.setText(age.toString())
 
                 binding.editAllergies.setText(document.getString("allergies").orEmpty())
                 binding.editChronic.setText(document.getString("chronicDiseases").orEmpty())
@@ -102,18 +100,19 @@ class EditProfileActivity : AppCompatActivity() {
                 val isPregnant = document.getBoolean("isPregnant")
                     ?: document.getBoolean("pregnant")
 
+                // ChipGroup арқылы жыныс орнату
                 when (gender) {
-                    "Мужской" -> binding.radioMale.isChecked = true
-                    "Женский" -> binding.radioFemale.isChecked = true
-                    "Другое" -> binding.radioOther.isChecked = true
+                    "Мужской" -> binding.chipMale.isChecked = true
+                    "Женский" -> binding.chipFemale.isChecked = true
+                    "Другое"  -> binding.chipOther.isChecked = true
                 }
 
                 if (gender == "Женский") {
                     binding.layoutPregnancy.visibility = View.VISIBLE
                     when (isPregnant) {
-                        true -> binding.radioPregnantYes.isChecked = true
-                        false -> binding.radioPregnantNo.isChecked = true
-                        null -> binding.radioGroupPregnancy.clearCheck()
+                        true  -> binding.chipPregnantYes.isChecked = true
+                        false -> binding.chipPregnantNo.isChecked = true
+                        null  -> binding.chipGroupPregnancy.clearCheck()
                     }
                 } else {
                     binding.layoutPregnancy.visibility = View.GONE
@@ -134,27 +133,30 @@ class EditProfileActivity : AppCompatActivity() {
             return
         }
 
-        val fullName = binding.editFullName.text.toString().trim()
-        val email = binding.editEmail.text.toString().trim()
-        val city = binding.autoCity.text.toString().trim()
-        val ageText = binding.editAge.text.toString().trim()
-        val allergies = binding.editAllergies.text.toString().trim()
-        val chronic = binding.editChronic.text.toString().trim()
+        val fullName   = binding.editFullName.text.toString().trim()
+        val email      = binding.editEmail.text.toString().trim()
+        val city       = binding.autoCity.text.toString().trim()
+        val ageText    = binding.editAge.text.toString().trim()
+        val allergies  = binding.editAllergies.text.toString().trim()
+        val chronic    = binding.editChronic.text.toString().trim()
         val currentMeds = binding.editCurrentMeds.text.toString().trim()
 
-        val gender = when (binding.radioGroupGender.checkedRadioButtonId) {
-            R.id.radioMale -> "Мужской"
-            R.id.radioFemale -> "Женский"
-            R.id.radioOther -> "Другое"
+        // ChipGroup арқылы жыныс анықтау
+        val gender = when {
+            binding.chipMale.isChecked   -> "Мужской"
+            binding.chipFemale.isChecked -> "Женский"
+            binding.chipOther.isChecked  -> "Другое"
             else -> ""
         }
 
-        val isPregnant = when (binding.radioGroupPregnancy.checkedRadioButtonId) {
-            R.id.radioPregnantYes -> true
-            R.id.radioPregnantNo -> false
+        // ChipGroup арқылы жүктілік анықтау
+        val isPregnant = when {
+            binding.chipPregnantYes.isChecked -> true
+            binding.chipPregnantNo.isChecked  -> false
             else -> null
         }
 
+        // Валидация
         if (fullName.isBlank()) {
             binding.layoutFullName.error = "Введите имя"
             return
@@ -185,12 +187,12 @@ class EditProfileActivity : AppCompatActivity() {
         }
 
         if (gender.isBlank()) {
-            Toast.makeText(this, "Выберите пол", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Жынысты таңдаңыз", Toast.LENGTH_SHORT).show()
             return
         }
 
         if (gender == "Женский" && isPregnant == null) {
-            Toast.makeText(this, "Укажите беременность", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Жүктілікті көрсетіңіз", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -198,17 +200,17 @@ class EditProfileActivity : AppCompatActivity() {
         binding.btnSaveProfile.isEnabled = false
 
         val profile = UserProfile(
-            uid = uid,
-            fullName = fullName,
-            email = email,
-            city = city,
-            age = age,
-            gender = gender,
-            isPregnant = if (gender == "Женский") isPregnant else null,
-            allergies = allergies,
-            chronicDiseases = chronic,
+            uid                = uid,
+            fullName           = fullName,
+            email              = email,
+            city               = city,
+            age                = age,
+            gender             = gender,
+            isPregnant         = if (gender == "Женский") isPregnant else null,
+            allergies          = allergies,
+            chronicDiseases    = chronic,
             currentMedications = currentMeds,
-            profileCompleted = true
+            profileCompleted   = true
         )
 
         firestore.collection("users")
@@ -217,14 +219,12 @@ class EditProfileActivity : AppCompatActivity() {
             .addOnSuccessListener {
                 binding.progressBar.visibility = View.GONE
                 binding.btnSaveProfile.isEnabled = true
-
-                Toast.makeText(this, "Профиль сохранён", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Профиль сақталды", Toast.LENGTH_SHORT).show()
                 finish()
             }
             .addOnFailureListener { e ->
                 binding.progressBar.visibility = View.GONE
                 binding.btnSaveProfile.isEnabled = true
-
                 Toast.makeText(this, "Ошибка: ${e.message}", Toast.LENGTH_LONG).show()
             }
     }

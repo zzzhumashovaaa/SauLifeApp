@@ -1,298 +1,404 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/treatment_bg">
+        android:background="#F7F9FC">
 
-    <ScrollView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:fillViewport="true"
-            android:clipToPadding="false"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:clipToPadding="false">
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingStart="22dp"
-                android:paddingEnd="22dp"
-                android:paddingTop="28dp"
-                android:paddingBottom="120dp">
+                android:paddingBottom="100dp">
 
-            <!-- Header -->
+            <!-- ══════════════════════════════════════ -->
+            <!-- HEADER HERO SECTION                    -->
+            <!-- ══════════════════════════════════════ -->
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                    <TextView
-                            android:id="@+id/textTreatmentTitle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Менің емделуім"
-                            android:textColor="@color/treatment_text_primary"
-                            android:textSize="28sp"
-                            android:textStyle="bold" />
-
-                    <TextView
-                            android:id="@+id/textTreatmentSubtitle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Дәрілерді бақылаңыз"
-                            android:textColor="@color/treatment_text_secondary"
-                            android:textSize="15sp" />
-                </LinearLayout>
-
-                <ImageButton
-                        android:id="@+id/btnAddMedicine"
-                        android:layout_width="52dp"
-                        android:layout_height="52dp"
-                        android:background="@drawable/bg_medicine_icon"
-                        android:src="@android:drawable/ic_input_add"
-                        android:scaleType="center"
-                        app:tint="@color/treatment_text_primary" />
-            </LinearLayout>
-
-            <!-- Summary Card -->
-            <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="22dp"
-                    app:cardCornerRadius="26dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="@color/white">
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_header_gradient"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="24dp"
+                    android:paddingTop="52dp"
+                    android:paddingBottom="32dp">
 
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="20dp">
-
-                    <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Бүгінгі ем жоспары"
-                            android:textColor="@color/treatment_text_primary"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
                     <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="18dp"
-                            android:orientation="horizontal">
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+
+                        <TextView
+                                android:id="@+id/textTreatmentTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Менің емделуім"
+                                android:textColor="#FFFFFF"
+                                android:textSize="28sp"
+                                android:fontFamily="sans-serif-black"
+                                android:letterSpacing="-0.02" />
+
+                        <TextView
+                                android:id="@+id/textTreatmentSubtitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Дәрілерді бақылаңыз"
+                                android:textColor="#B2E0DC"
+                                android:textSize="14sp"
+                                android:fontFamily="sans-serif" />
+                    </LinearLayout>
+
+                    <!-- Add Button -->
+                    <androidx.cardview.widget.CardView
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="8dp"
+                            app:cardBackgroundColor="#FFFFFF">
+
+                        <ImageButton
+                                android:id="@+id/btnAddMedicine"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:src="@android:drawable/ic_input_add"
+                                android:scaleType="center"
+                                app:tint="#0F9B8E" />
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <!-- ══════════════════════════════ -->
+                <!-- STATS ROW                      -->
+                <!-- ══════════════════════════════ -->
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="28dp"
+                        android:orientation="horizontal">
+
+                    <!-- Stat: Active -->
+                    <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="0dp"
+                            app:cardBackgroundColor="#19FFFFFF">
 
                         <LinearLayout
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
+                                android:orientation="vertical"
+                                android:padding="16dp">
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="💊"
+                                    android:textSize="22sp" />
 
                             <TextView
                                     android:id="@+id/textActiveCount"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
                                     android:text="0"
-                                    android:textColor="@color/treatment_text_primary"
-                                    android:textSize="24sp"
-                                    android:textStyle="bold" />
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="26sp"
+                                    android:fontFamily="sans-serif-black" />
 
                             <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Белсенді дәрі"
-                                    android:textColor="@color/treatment_text_secondary"
-                                    android:textSize="12sp" />
+                                    android:textColor="#B2E0DC"
+                                    android:textSize="11sp"
+                                    android:fontFamily="sans-serif-medium" />
                         </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Stat: Next Dose -->
+                    <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginEnd="6dp"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="0dp"
+                            app:cardBackgroundColor="#19FFFFFF">
 
                         <LinearLayout
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
+                                android:orientation="vertical"
+                                android:padding="16dp">
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="⏰"
+                                    android:textSize="22sp" />
 
                             <TextView
                                     android:id="@+id/textNextDose"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
                                     android:text="--:--"
-                                    android:textColor="@color/treatment_text_primary"
-                                    android:textSize="24sp"
-                                    android:textStyle="bold" />
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="26sp"
+                                    android:fontFamily="sans-serif-black" />
 
                             <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Келесі қабылдау"
-                                    android:textColor="@color/treatment_text_secondary"
-                                    android:textSize="12sp" />
+                                    android:textColor="#B2E0DC"
+                                    android:textSize="11sp"
+                                    android:fontFamily="sans-serif-medium" />
                         </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Stat: Adherence -->
+                    <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="0dp"
+                            app:cardBackgroundColor="#19FFFFFF">
 
                         <LinearLayout
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
+                                android:orientation="vertical"
+                                android:padding="16dp">
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="📈"
+                                    android:textSize="22sp" />
 
                             <TextView
                                     android:id="@+id/textAdherence"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
                                     android:text="92%"
-                                    android:textColor="@color/treatment_text_primary"
-                                    android:textSize="24sp"
-                                    android:textStyle="bold" />
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="26sp"
+                                    android:fontFamily="sans-serif-black" />
 
                             <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Тәртіп"
-                                    android:textColor="@color/treatment_text_secondary"
-                                    android:textSize="12sp" />
+                                    android:textColor="#B2E0DC"
+                                    android:textSize="11sp"
+                                    android:fontFamily="sans-serif-medium" />
                         </LinearLayout>
-                    </LinearLayout>
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
-            <!-- Filter Chips -->
-            <HorizontalScrollView
+            <!-- ══════════════════════════════════════ -->
+            <!-- CONTENT SECTION                        -->
+            <!-- ══════════════════════════════════════ -->
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="22dp"
-                    android:scrollbars="none">
+                    android:orientation="vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
 
-                <LinearLayout
-                        android:layout_width="wrap_content"
+                <!-- ── Filter Chips ── -->
+                <HorizontalScrollView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:scrollbars="none"
+                        android:clipToPadding="false"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="20dp">
+
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <com.google.android.material.chip.Chip
+                                android:id="@+id/chipAll"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:text="Барлығы"
+                                android:textSize="13sp"
+                                android:checkable="true"
+                                android:checked="true"
+                                app:chipStrokeWidth="1.5dp"
+                                app:checkedIconVisible="false"
+                                android:fontFamily="sans-serif-medium" />
+
+                        <com.google.android.material.chip.Chip
+                                android:id="@+id/chipActive"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:layout_marginStart="8dp"
+                                android:text="Белсенді"
+                                android:textSize="13sp"
+                                android:checkable="true"
+                                app:chipStrokeWidth="1.5dp"
+                                app:checkedIconVisible="false"
+                                android:fontFamily="sans-serif-medium" />
+
+                        <com.google.android.material.chip.Chip
+                                android:id="@+id/chipFinished"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:layout_marginStart="8dp"
+                                android:text="Аяқталған"
+                                android:textSize="13sp"
+                                android:checkable="true"
+                                app:chipStrokeWidth="1.5dp"
+                                app:checkedIconVisible="false"
+                                android:fontFamily="sans-serif-medium" />
+
+                        <com.google.android.material.chip.Chip
+                                android:id="@+id/chipExpired"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:layout_marginStart="8dp"
+                                android:text="Мерзімі өткен"
+                                android:textSize="13sp"
+                                android:checkable="true"
+                                app:chipStrokeWidth="1.5dp"
+                                app:checkedIconVisible="false"
+                                android:fontFamily="sans-serif-medium" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <!-- ── Current Treatment Section ── -->
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="28dp"
+                        android:gravity="center_vertical"
                         android:orientation="horizontal">
 
-                    <TextView
-                            android:id="@+id/chipAll"
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:gravity="center"
-                            android:paddingStart="18dp"
-                            android:paddingEnd="18dp"
-                            android:background="@drawable/bg_button"
-                            android:text="Барлығы"
-                            android:textColor="@color/white"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                    <!-- Teal accent bar -->
+                    <View
+                            android:layout_width="4dp"
+                            android:layout_height="22dp"
+                            android:background="@drawable/bg_accent_bar"
+                            android:layout_marginEnd="10dp" />
 
-                    <TextView
-                            android:id="@+id/chipActive"
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:layout_marginStart="10dp"
-                            android:gravity="center"
-                            android:paddingStart="18dp"
-                            android:paddingEnd="18dp"
-                            android:background="@drawable/bg_medicine_icon"
-                            android:text="Белсенді"
-                            android:textColor="@color/treatment_text_primary"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                    <TextView
-                            android:id="@+id/chipFinished"
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:layout_marginStart="10dp"
-                            android:gravity="center"
-                            android:paddingStart="18dp"
-                            android:paddingEnd="18dp"
-                            android:background="@drawable/bg_medicine_icon"
-                            android:text="Аяқталған"
-                            android:textColor="@color/treatment_text_primary"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                        <TextView
+                                android:id="@+id/textCurrentTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Қазір қабылданып жатыр"
+                                android:textColor="#1A2B2B"
+                                android:textSize="18sp"
+                                android:fontFamily="sans-serif-black" />
 
-                    <TextView
-                            android:id="@+id/chipExpired"
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:layout_marginStart="10dp"
-                            android:gravity="center"
-                            android:paddingStart="18dp"
-                            android:paddingEnd="18dp"
-                            android:background="@drawable/bg_medicine_icon"
-                            android:text="Мерзімі өткен"
-                            android:textColor="@color/treatment_text_primary"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                        <TextView
+                                android:id="@+id/textCurrentCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="0 белсенді дәрі"
+                                android:textColor="#8FA8A6"
+                                android:textSize="13sp"
+                                android:fontFamily="sans-serif" />
+                    </LinearLayout>
                 </LinearLayout>
-            </HorizontalScrollView>
 
-            <!-- Current Treatment -->
-            <TextView
-                    android:id="@+id/textCurrentTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="26dp"
-                    android:text="Қазір қабылданып жатыр"
-                    android:textColor="@color/treatment_text_primary"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerCurrentTreatment"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="14dp"
+                        android:clipToPadding="false"
+                        android:paddingEnd="20dp" />
 
-            <TextView
-                    android:id="@+id/textCurrentCount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="0 белсенді дәрі"
-                    android:textColor="@color/treatment_text_secondary"
-                    android:textSize="14sp" />
+                <!-- ── All Medicines Section ── -->
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerCurrentTreatment"
-                    android:layout_width="match_parent"
-                    android:layout_height="220dp"
-                    android:layout_marginTop="14dp"
-                    android:clipToPadding="false"
-                    android:paddingEnd="20dp" />
+                    <!-- Teal accent bar -->
+                    <View
+                            android:layout_width="4dp"
+                            android:layout_height="22dp"
+                            android:background="@drawable/bg_accent_bar"
+                            android:layout_marginEnd="10dp" />
 
-            <!-- All Medicines -->
-            <TextView
-                    android:id="@+id/textHomeTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="26dp"
-                    android:text="Барлық дәрілер"
-                    android:textColor="@color/treatment_text_primary"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-            <TextView
-                    android:id="@+id/textHomeCount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="0 дәрі"
-                    android:textColor="@color/treatment_text_secondary"
-                    android:textSize="14sp" />
+                        <TextView
+                                android:id="@+id/textHomeTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Барлық дәрілер"
+                                android:textColor="#1A2B2B"
+                                android:textSize="18sp"
+                                android:fontFamily="sans-serif-black" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerHomeMedicine"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:nestedScrollingEnabled="false" />
+                        <TextView
+                                android:id="@+id/textHomeCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="0 дәрі"
+                                android:textColor="#8FA8A6"
+                                android:textSize="13sp"
+                                android:fontFamily="sans-serif" />
+                    </LinearLayout>
+                </LinearLayout>
 
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerHomeMedicine"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:nestedScrollingEnabled="false" />
+
+            </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

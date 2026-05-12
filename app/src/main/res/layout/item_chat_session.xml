@@ -1,35 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:elevation="2dp"
-        android:padding="12dp">
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:strokeColor="#E8ECF2"
+        app:strokeWidth="1dp">
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+        <!-- Icon -->
+        <com.google.android.material.card.MaterialCardView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#E6F7F6"
+                app:strokeWidth="0dp"
+                android:layout_marginEnd="14dp">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="💬"
+                    android:textSize="20sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Text content -->
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Чат тақырыбы"
+                    android:textColor="#0D1B2A"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+
+            <TextView
+                    android:id="@+id/tvLastMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Соңғы хабарлама..."
+                    android:textColor="#9AAAB8"
+                    android:textSize="13sp"
+                    android:layout_marginTop="3dp"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+
+            <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Бүгін, 14:30"
+                    android:textColor="#C5CFDA"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4dp" />
+        </LinearLayout>
 
         <TextView
-                android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Название чата"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#111827"/>
-
-        <TextView
-                android:id="@+id/tvLastMessage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Последнее сообщение"
-                android:textSize="14sp"
-                android:textColor="#6B7280"
-                android:layout_marginTop="4dp"/>
-
+                android:text="›"
+                android:textColor="#C5CFDA"
+                android:textSize="22sp" />
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>
