@@ -3,43 +3,55 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F6F7FB">
+        android:background="#F7F9FC">
 
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="20dp">
+            android:padding="16dp">
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="32dp">
+                android:paddingBottom="40dp">
 
+            <!-- Header -->
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="22dp">
+                    android:layout_marginBottom="24dp">
 
-                <TextView
+                <com.google.android.material.card.MaterialCardView
                         android:id="@+id/btnBack"
-                        android:layout_width="44dp"
-                        android:layout_height="44dp"
-                        android:gravity="center"
-                        android:text="‹"
-                        android:textColor="#111827"
-                        android:textSize="38sp"
-                        android:textStyle="bold" />
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#E8ECF2"
+                        app:strokeWidth="1dp"
+                        app:cardBackgroundColor="#FFFFFF"
+                        android:layout_marginEnd="14dp">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="‹"
+                            android:textColor="#0D1B2A"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Редактировать\nпрофиль"
-                        android:textColor="#111827"
-                        android:textSize="18dp"
+                        android:text="Профильді өңдеу"
+                        android:textColor="#0D1B2A"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
             </LinearLayout>
 
@@ -48,165 +60,252 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:indeterminateTint="#0F9B8E"
                     android:visibility="gone"
                     android:layout_marginBottom="12dp" />
 
+            <!-- Негізгі ақпарат -->
             <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="26dp"
-                    app:cardElevation="3dp"
-                    app:strokeColor="#E5E7EB"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:strokeColor="#E8ECF2"
                     app:strokeWidth="1dp"
-                    android:layout_marginBottom="18dp">
+                    android:layout_marginBottom="14dp">
 
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="18dp">
+                        android:padding="20dp">
 
                     <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Основная информация"
-                            android:textColor="#111827"
-                            android:textSize="22sp"
+                            android:text="НЕГІЗГІ АҚПАРАТ"
+                            android:textColor="#9AAAB8"
+                            android:textSize="11sp"
                             android:textStyle="bold"
+                            android:letterSpacing="0.08"
                             android:layout_marginBottom="16dp" />
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Пайдаланушы аты"
+                            android:textColor="#5A6B7A"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="6dp" />
 
                     <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/layoutFullName"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Имя пользователя"
-                            app:boxCornerRadiusTopStart="16dp"
-                            app:boxCornerRadiusTopEnd="16dp"
-                            app:boxCornerRadiusBottomStart="16dp"
-                            app:boxCornerRadiusBottomEnd="16dp"
+                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxCornerRadiusTopEnd="12dp"
+                            app:boxCornerRadiusBottomStart="12dp"
+                            app:boxCornerRadiusBottomEnd="12dp"
+                            app:boxStrokeColor="#E8ECF2"
+                            app:boxBackgroundColor="#F7F9FC"
+                            app:hintEnabled="false"
                             android:layout_marginBottom="14dp">
 
                         <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/editFullName"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="textPersonName" />
+                                android:inputType="textPersonName"
+                                android:textColor="#0D1B2A"
+                                android:textSize="15sp"
+                                android:padding="13dp" />
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Email"
+                            android:textColor="#5A6B7A"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="6dp" />
 
                     <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/layoutEmail"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Email"
-                            app:boxCornerRadiusTopStart="16dp"
-                            app:boxCornerRadiusTopEnd="16dp"
-                            app:boxCornerRadiusBottomStart="16dp"
-                            app:boxCornerRadiusBottomEnd="16dp"
+                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxCornerRadiusTopEnd="12dp"
+                            app:boxCornerRadiusBottomStart="12dp"
+                            app:boxCornerRadiusBottomEnd="12dp"
+                            app:boxStrokeColor="#E8ECF2"
+                            app:boxBackgroundColor="#F7F9FC"
+                            app:hintEnabled="false"
                             android:layout_marginBottom="14dp">
 
                         <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/editEmail"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="textEmailAddress" />
+                                android:inputType="textEmailAddress"
+                                android:textColor="#0D1B2A"
+                                android:textSize="15sp"
+                                android:padding="13dp" />
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Қала"
+                            android:textColor="#5A6B7A"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="6dp" />
 
                     <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/layoutCity"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Город"
                             app:endIconMode="dropdown_menu"
-                            app:boxCornerRadiusTopStart="16dp"
-                            app:boxCornerRadiusTopEnd="16dp"
-                            app:boxCornerRadiusBottomStart="16dp"
-                            app:boxCornerRadiusBottomEnd="16dp"
+                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxCornerRadiusTopEnd="12dp"
+                            app:boxCornerRadiusBottomStart="12dp"
+                            app:boxCornerRadiusBottomEnd="12dp"
+                            app:boxStrokeColor="#E8ECF2"
+                            app:boxBackgroundColor="#F7F9FC"
+                            app:hintEnabled="false"
                             android:layout_marginBottom="14dp">
 
                         <AutoCompleteTextView
                                 android:id="@+id/autoCity"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="none" />
+                                android:inputType="none"
+                                android:textColor="#0D1B2A"
+                                android:textSize="15sp"
+                                android:padding="13dp" />
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Жасы"
+                            android:textColor="#5A6B7A"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="6dp" />
 
                     <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/layoutAge"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Возраст"
-                            app:boxCornerRadiusTopStart="16dp"
-                            app:boxCornerRadiusTopEnd="16dp"
-                            app:boxCornerRadiusBottomStart="16dp"
-                            app:boxCornerRadiusBottomEnd="16dp">
+                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxCornerRadiusTopEnd="12dp"
+                            app:boxCornerRadiusBottomStart="12dp"
+                            app:boxCornerRadiusBottomEnd="12dp"
+                            app:boxStrokeColor="#E8ECF2"
+                            app:boxBackgroundColor="#F7F9FC"
+                            app:hintEnabled="false">
 
                         <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/editAge"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="number" />
+                                android:inputType="number"
+                                android:textColor="#0D1B2A"
+                                android:textSize="15sp"
+                                android:padding="13dp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Жеке деректер -->
             <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="26dp"
-                    app:cardElevation="3dp"
-                    app:strokeColor="#E5E7EB"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:strokeColor="#E8ECF2"
                     app:strokeWidth="1dp"
-                    android:layout_marginBottom="18dp">
+                    android:layout_marginBottom="14dp">
 
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="18dp">
+                        android:padding="20dp">
 
                     <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Личные данные"
-                            android:textColor="#111827"
-                            android:textSize="22sp"
+                            android:text="ЖЕКЕ ДЕРЕКТЕР"
+                            android:textColor="#9AAAB8"
+                            android:textSize="11sp"
                             android:textStyle="bold"
+                            android:letterSpacing="0.08"
                             android:layout_marginBottom="14dp" />
 
-                    <RadioGroup
-                            android:id="@+id/radioGroupGender"
+                    <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
+                            android:text="Жынысы"
+                            android:textColor="#5A6B7A"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="10dp" />
+
+                    <!-- Gender pill buttons (chip group) -->
+                    <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chipGroupGender"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:singleSelection="true"
+                            app:selectionRequired="true"
                             android:layout_marginBottom="16dp">
 
-                        <RadioButton
-                                android:id="@+id/radioMale"
+                        <com.google.android.material.chip.Chip
+                                android:id="@+id/chipMale"
+                                style="@style/Widget.MaterialComponents.Chip.Choice"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Мужской"
-                                android:textSize="17sp" />
+                                android:layout_height="40dp"
+                                android:text="Ер"
+                                android:textSize="14sp"
+                                app:chipCornerRadius="20dp"
+                                app:chipBackgroundColor="@color/chip_bg_selector"
+                                app:checkedIconVisible="false" />
 
-                        <RadioButton
-                                android:id="@+id/radioFemale"
+                        <com.google.android.material.chip.Chip
+                                android:id="@+id/chipFemale"
+                                style="@style/Widget.MaterialComponents.Chip.Choice"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Женский"
-                                android:textSize="17sp" />
+                                android:layout_height="40dp"
+                                android:text="Әйел"
+                                android:textSize="14sp"
+                                app:chipCornerRadius="20dp"
+                                app:chipBackgroundColor="@color/chip_bg_selector"
+                                app:checkedIconVisible="false" />
 
-                        <RadioButton
-                                android:id="@+id/radioOther"
+                        <com.google.android.material.chip.Chip
+                                android:id="@+id/chipOther"
+                                style="@style/Widget.MaterialComponents.Chip.Choice"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Другое"
-                                android:textSize="17sp" />
-                    </RadioGroup>
+                                android:layout_height="40dp"
+                                android:text="Басқа"
+                                android:textSize="14sp"
+                                app:chipCornerRadius="20dp"
+                                app:chipBackgroundColor="@color/chip_bg_selector"
+                                app:checkedIconVisible="false" />
+                    </com.google.android.material.chip.ChipGroup>
 
+                    <!-- Pregnancy section (shown for female) -->
                     <LinearLayout
                             android:id="@+id/layoutPregnancy"
                             android:layout_width="match_parent"
@@ -214,131 +313,201 @@
                             android:orientation="vertical"
                             android:visibility="gone">
 
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#F0F2F5"
+                                android:layout_marginBottom="14dp" />
+
                         <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Беременность"
-                                android:textColor="#111827"
-                                android:textSize="18sp"
+                                android:text="Жүктілік"
+                                android:textColor="#5A6B7A"
+                                android:textSize="12sp"
                                 android:textStyle="bold"
-                                android:layout_marginBottom="8dp" />
+                                android:layout_marginBottom="10dp" />
 
-                        <RadioGroup
-                                android:id="@+id/radioGroupPregnancy"
+                        <com.google.android.material.chip.ChipGroup
+                                android:id="@+id/chipGroupPregnancy"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                app:singleSelection="true"
+                                app:selectionRequired="true">
 
-                            <RadioButton
-                                    android:id="@+id/radioPregnantYes"
+                            <com.google.android.material.chip.Chip
+                                    android:id="@+id/chipPregnantYes"
+                                    style="@style/Widget.MaterialComponents.Chip.Choice"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Да"
-                                    android:textSize="17sp" />
+                                    android:layout_height="40dp"
+                                    android:text="Иә"
+                                    android:textSize="14sp"
+                                    app:chipCornerRadius="20dp"
+                                    app:chipBackgroundColor="@color/chip_bg_selector"
+                                    app:checkedIconVisible="false" />
 
-                            <RadioButton
-                                    android:id="@+id/radioPregnantNo"
+                            <com.google.android.material.chip.Chip
+                                    android:id="@+id/chipPregnantNo"
+                                    style="@style/Widget.MaterialComponents.Chip.Choice"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Нет"
-                                    android:textSize="17sp"
-                                    android:layout_marginLeft="20dp" />
-                        </RadioGroup>
+                                    android:layout_height="40dp"
+                                    android:text="Жоқ"
+                                    android:textSize="14sp"
+                                    app:chipCornerRadius="20dp"
+                                    app:chipBackgroundColor="@color/chip_bg_selector"
+                                    app:checkedIconVisible="false" />
+                        </com.google.android.material.chip.ChipGroup>
                     </LinearLayout>
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Денсаулық -->
             <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="26dp"
-                    app:cardElevation="3dp"
-                    app:strokeColor="#E5E7EB"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:strokeColor="#E8ECF2"
                     app:strokeWidth="1dp"
-                    android:layout_marginBottom="24dp">
+                    android:layout_marginBottom="22dp">
 
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="18dp">
+                        android:padding="20dp">
 
                     <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Здоровье"
-                            android:textColor="#111827"
-                            android:textSize="22sp"
+                            android:text="ДЕНСАУЛЫҚ"
+                            android:textColor="#9AAAB8"
+                            android:textSize="11sp"
                             android:textStyle="bold"
+                            android:letterSpacing="0.08"
                             android:layout_marginBottom="16dp" />
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Аллергиялар"
+                            android:textColor="#5A6B7A"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="6dp" />
 
                     <com.google.android.material.textfield.TextInputLayout
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Аллергии"
-                            app:boxCornerRadiusTopStart="16dp"
-                            app:boxCornerRadiusTopEnd="16dp"
-                            app:boxCornerRadiusBottomStart="16dp"
-                            app:boxCornerRadiusBottomEnd="16dp"
+                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxCornerRadiusTopEnd="12dp"
+                            app:boxCornerRadiusBottomStart="12dp"
+                            app:boxCornerRadiusBottomEnd="12dp"
+                            app:boxStrokeColor="#E8ECF2"
+                            app:boxBackgroundColor="#F7F9FC"
+                            app:hintEnabled="false"
                             android:layout_marginBottom="14dp">
 
                         <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/editAllergies"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:minLines="2" />
+                                android:hint="Пенициллин, жержаңғақ..."
+                                android:textColorHint="#C5CFDA"
+                                android:textColor="#0D1B2A"
+                                android:textSize="15sp"
+                                android:padding="13dp"
+                                android:minLines="2"
+                                android:gravity="top" />
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Созылмалы аурулар"
+                            android:textColor="#5A6B7A"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="6dp" />
 
                     <com.google.android.material.textfield.TextInputLayout
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Хронические заболевания"
-                            app:boxCornerRadiusTopStart="16dp"
-                            app:boxCornerRadiusTopEnd="16dp"
-                            app:boxCornerRadiusBottomStart="16dp"
-                            app:boxCornerRadiusBottomEnd="16dp"
+                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxCornerRadiusTopEnd="12dp"
+                            app:boxCornerRadiusBottomStart="12dp"
+                            app:boxCornerRadiusBottomEnd="12dp"
+                            app:boxStrokeColor="#E8ECF2"
+                            app:boxBackgroundColor="#F7F9FC"
+                            app:hintEnabled="false"
                             android:layout_marginBottom="14dp">
 
                         <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/editChronic"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:minLines="2" />
+                                android:hint="Қант диабеті, гипертония..."
+                                android:textColorHint="#C5CFDA"
+                                android:textColor="#0D1B2A"
+                                android:textSize="15sp"
+                                android:padding="13dp"
+                                android:minLines="2"
+                                android:gravity="top" />
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Ағымдағы дәрілер"
+                            android:textColor="#5A6B7A"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="6dp" />
 
                     <com.google.android.material.textfield.TextInputLayout
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Текущие лекарства"
-                            app:boxCornerRadiusTopStart="16dp"
-                            app:boxCornerRadiusTopEnd="16dp"
-                            app:boxCornerRadiusBottomStart="16dp"
-                            app:boxCornerRadiusBottomEnd="16dp">
+                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxCornerRadiusTopEnd="12dp"
+                            app:boxCornerRadiusBottomStart="12dp"
+                            app:boxCornerRadiusBottomEnd="12dp"
+                            app:boxStrokeColor="#E8ECF2"
+                            app:boxBackgroundColor="#F7F9FC"
+                            app:hintEnabled="false">
 
                         <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/editCurrentMeds"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:minLines="2" />
+                                android:hint="Метформин 500мг..."
+                                android:textColorHint="#C5CFDA"
+                                android:textColor="#0D1B2A"
+                                android:textSize="15sp"
+                                android:padding="13dp"
+                                android:minLines="2"
+                                android:gravity="top" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Save button -->
             <Button
                     android:id="@+id/btnSaveProfile"
                     android:layout_width="match_parent"
-                    android:layout_height="58dp"
-                    android:text="Сохранить изменения"
+                    android:layout_height="56dp"
+                    android:text="Өзгерістерді сақтау"
                     android:textAllCaps="false"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
-                    android:backgroundTint="#5B3FFF" />
+                    android:backgroundTint="#0F9B8E"
+                    app:cornerRadius="16dp" />
 
         </LinearLayout>
     </ScrollView>
