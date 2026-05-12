@@ -18,8 +18,11 @@ import com.example.saulifeapp.cart.CartRepository
 import com.example.saulifeapp.databinding.FragmentHomeBinding
 import com.example.saulifeapp.news.NewsAdapter
 import com.example.saulifeapp.news.NewsRepository
+import com.example.saulifeapp.ui.notification.NotificationsActivity
 import com.example.saulifeapp.pharmacy.PharmacyWebActivity
 import com.example.saulifeapp.ui.reminders.RemindersActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -61,14 +64,35 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupHeader() {
-        binding.textGreeting.text = "Қайырлы кеш, Айжан"
+        binding.textGreeting.text = "Қайырлы кеш"
         binding.textGreetingSubtitle.text = "Бүгін өзіңізді қалай сезініп тұрсыз?"
 
-        // Кейін бұл мәндерді Firestore-дан treatment/reminders деректері арқылы есептейміз.
+        loadUserName()
+
         binding.textActiveMedicines.text = "3"
         binding.textNextMedicine.text = "Парацетамол — 21:00"
         binding.textCourseProgress.text = "5/10 күн"
         binding.textAdherence.text = "86%"
+    }
+    private fun loadUserName() {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        FirebaseFirestore.getInstance()
+            .collection("users")
+            .document(uid)
+            .get()
+            .addOnSuccessListener { document ->
+                if (!isAdded || _binding == null) return@addOnSuccessListener
+
+                val fullName = document.getString("fullName").orEmpty()
+                val firstName = fullName.split(" ").firstOrNull().orEmpty()
+
+                binding.textGreeting.text = if (firstName.isNotBlank()) {
+                    "Қайырлы кеш, $firstName"
+                } else {
+                    "Қайырлы кеш"
+                }
+            }
     }
 
     private fun setupQuickActions() {
@@ -219,6 +243,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupClicks() {
+        binding.btnNotifications.setOnClickListener {
+            startActivity(Intent(requireContext(), NotificationsActivity::class.java))
+        }
+
         binding.layoutSearch.setOnClickListener {
             openPharmacySearch()
         }

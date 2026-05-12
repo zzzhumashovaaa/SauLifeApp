@@ -17,38 +17,58 @@
             android:paddingBottom="32dp">
 
         <!-- Greeting -->
-        <TextView
-                android:id="@+id/textGreeting"
+        <!-- Greeting -->
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Қайырлы кеш, Айжан"
-                android:textColor="#0F172A"
-                android:textSize="24dp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-        <TextView
-                android:id="@+id/textGreetingSubtitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Бүгін өзіңізді қалай сезініп тұрсыз?"
-                android:textColor="#64748B"
-                android:textSize="12dp" />
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:id="@+id/textGreeting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Қайырлы кеш, Айжан"
+                        android:textColor="#0F172A"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:id="@+id/textGreetingSubtitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Бүгін өзіңізді қалай сезініп тұрсыз?"
+                        android:textColor="#64748B"
+                        android:textSize="12sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/btnNotifications"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_notification"
+                android:contentDescription="Notifications"
+                app:tint="#0F172A" />
+
+        </LinearLayout>
 
         <!-- Search -->
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:text="Жылдам әрекеттер"
-                android:textColor="#0F172A"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+
 
         <LinearLayout
                 android:id="@+id/layoutSearch"
                 android:layout_width="match_parent"
-                android:layout_height="58dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/bg_search"
                 android:gravity="center_vertical"
@@ -198,6 +218,14 @@
         </androidx.cardview.widget.CardView>
 
         <!-- Quick Actions -->
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="Жылдам әрекеттер"
+                android:textColor="#0F172A"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerQuickActions"

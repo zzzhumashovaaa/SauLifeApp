@@ -7,14 +7,15 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.saulifeapp.CameraActivity
 import com.example.saulifeapp.R
 import com.example.saulifeapp.ui.pharmacy.PharmacyOffersActivity
 
 class ScanResultActivity : AppCompatActivity() {
 
     private lateinit var etRawText: EditText
-    private lateinit var btnProcessText: Button
     private lateinit var btnFindInPharmacies: Button
+    private lateinit var btnScanAgain: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,19 +26,16 @@ class ScanResultActivity : AppCompatActivity() {
         }
 
         etRawText = findViewById(R.id.etRawText)
-        btnProcessText = findViewById(R.id.btnProcessText)
         btnFindInPharmacies = findViewById(R.id.btnFindInPharmacies)
+        btnScanAgain = findViewById(R.id.btnScanAgain)
 
         val rawText = intent.getStringExtra("ocr_text").orEmpty()
-        etRawText.setText(rawText)
+        val cleanedText = rawText.trim()
 
-        btnProcessText.setOnClickListener {
-            val text = etRawText.text.toString().trim()
-            if (text.isBlank()) {
-                Toast.makeText(this, "Нет текста для обработки", Toast.LENGTH_SHORT).show()
-            } else {
-                etRawText.setText(text.lowercase())
-            }
+        etRawText.setText(cleanedText)
+
+        if (cleanedText.isBlank()) {
+            etRawText.hint = "Введите название лекарства вручную"
         }
 
         btnFindInPharmacies.setOnClickListener {
@@ -51,6 +49,12 @@ class ScanResultActivity : AppCompatActivity() {
             val intent = Intent(this, PharmacyOffersActivity::class.java)
             intent.putExtra("medicine_name", medicineName)
             startActivity(intent)
+        }
+
+        btnScanAgain.setOnClickListener {
+            val intent = Intent(this, CameraActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }

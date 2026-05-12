@@ -1,10 +1,12 @@
 package com.example.saulifeapp.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.saulifeapp.MainActivity
 import com.example.saulifeapp.R
 import com.example.saulifeapp.databinding.ActivityEditProfileBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -17,6 +19,9 @@ class EditProfileActivity : AppCompatActivity() {
 
     private val auth by lazy { FirebaseAuth.getInstance() }
     private val firestore by lazy { FirebaseFirestore.getInstance() }
+
+    private var originalProfileSnapshot: String = ""
+    private var profileAlreadyCompleted: Boolean = false
 
     private val cities = listOf(
         "Алматы", "Астана", "Шымкент", "Караганда",
@@ -57,8 +62,9 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun setupButtons() {
+
         binding.btnBack.setOnClickListener {
-            finish()
+            handleBack()
         }
 
         binding.btnSaveProfile.setOnClickListener {
@@ -67,6 +73,7 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun loadProfile() {
+
         val user = auth.currentUser ?: return
         val uid = user.uid
 
@@ -76,6 +83,7 @@ class EditProfileActivity : AppCompatActivity() {
             .document(uid)
             .get()
             .addOnSuccessListener { document ->
+
                 binding.progressBar.visibility = View.GONE
 
                 val fullName = document.getString("fullName").orEmpty()
@@ -83,22 +91,36 @@ class EditProfileActivity : AppCompatActivity() {
                 val authEmail = user.email.orEmpty()
 
                 binding.editFullName.setText(fullName)
+
                 binding.editEmail.setText(
                     if (email.isNotBlank()) email else authEmail
                 )
 
-                binding.autoCity.setText(document.getString("city").orEmpty(), false)
+                binding.autoCity.setText(
+                    document.getString("city").orEmpty(),
+                    false
+                )
 
                 val age = document.getLong("age")?.toInt() ?: 0
+
                 if (age > 0) {
                     binding.editAge.setText(age.toString())
                 }
 
-                binding.editAllergies.setText(document.getString("allergies").orEmpty())
-                binding.editChronic.setText(document.getString("chronicDiseases").orEmpty())
-                binding.editCurrentMeds.setText(document.getString("currentMedications").orEmpty())
+                binding.editAllergies.setText(
+                    document.getString("allergies").orEmpty()
+                )
+
+                binding.editChronic.setText(
+                    document.getString("chronicDiseases").orEmpty()
+                )
+
+                binding.editCurrentMeds.setText(
+                    document.getString("currentMedications").orEmpty()
+                )
 
                 val gender = document.getString("gender").orEmpty()
+
                 val isPregnant = document.getBoolean("isPregnant")
                     ?: document.getBoolean("pregnant")
 
@@ -109,28 +131,48 @@ class EditProfileActivity : AppCompatActivity() {
                 }
 
                 if (gender == "Женский") {
+
                     binding.layoutPregnancy.visibility = View.VISIBLE
+
                     when (isPregnant) {
                         true -> binding.radioPregnantYes.isChecked = true
                         false -> binding.radioPregnantNo.isChecked = true
                         null -> binding.radioGroupPregnancy.clearCheck()
                     }
+
                 } else {
+
                     binding.layoutPregnancy.visibility = View.GONE
                 }
+
+                profileAlreadyCompleted =
+                    document.getBoolean("profileCompleted") == true
+
+                originalProfileSnapshot = getCurrentProfileSnapshot()
             }
             .addOnFailureListener { e ->
+
                 binding.progressBar.visibility = View.GONE
-                Toast.makeText(this, "Ошибка загрузки: ${e.message}", Toast.LENGTH_LONG).show()
+
+                Toast.makeText(
+                    this,
+                    "Ошибка загрузки: ${e.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
     }
 
     private fun saveProfile() {
+
         val user = auth.currentUser
         val uid = user?.uid
 
         if (uid == null) {
-            Toast.makeText(this, "Ошибка авторизации", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Ошибка авторизации",
+                Toast.LENGTH_SHORT
+            ).show()
             return
         }
 
@@ -138,8 +180,11 @@ class EditProfileActivity : AppCompatActivity() {
         val email = binding.editEmail.text.toString().trim()
         val city = binding.autoCity.text.toString().trim()
         val ageText = binding.editAge.text.toString().trim()
+
         val allergies = binding.editAllergies.text.toString().trim()
+
         val chronic = binding.editChronic.text.toString().trim()
+
         val currentMeds = binding.editCurrentMeds.text.toString().trim()
 
         val gender = when (binding.radioGroupGender.checkedRadioButtonId) {
@@ -177,6 +222,7 @@ class EditProfileActivity : AppCompatActivity() {
         }
 
         val age = ageText.toIntOrNull()
+
         if (age == null || age <= 0 || age > 120) {
             binding.layoutAge.error = "Некорректный возраст"
             return
@@ -185,17 +231,27 @@ class EditProfileActivity : AppCompatActivity() {
         }
 
         if (gender.isBlank()) {
-            Toast.makeText(this, "Выберите пол", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Выберите пол",
+                Toast.LENGTH_SHORT
+            ).show()
             return
         }
 
         if (gender == "Женский" && isPregnant == null) {
-            Toast.makeText(this, "Укажите беременность", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Укажите беременность",
+                Toast.LENGTH_SHORT
+            ).show()
             return
         }
 
         binding.progressBar.visibility = View.VISIBLE
         binding.btnSaveProfile.isEnabled = false
+
+        val wasCompletedBefore = profileAlreadyCompleted
 
         val profile = UserProfile(
             uid = uid,
@@ -215,17 +271,105 @@ class EditProfileActivity : AppCompatActivity() {
             .document(uid)
             .set(profile, SetOptions.merge())
             .addOnSuccessListener {
+
                 binding.progressBar.visibility = View.GONE
                 binding.btnSaveProfile.isEnabled = true
 
-                Toast.makeText(this, "Профиль сохранён", Toast.LENGTH_SHORT).show()
-                finish()
+                profileAlreadyCompleted = true
+                originalProfileSnapshot = getCurrentProfileSnapshot()
+
+                Toast.makeText(
+                    this,
+                    "Профиль сохранён",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                if (wasCompletedBefore) {
+
+                    finish()
+
+                } else {
+
+                    val intent = Intent(this, MainActivity::class.java)
+
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_NEW_TASK or
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+                    startActivity(intent)
+                    finish()
+                }
             }
             .addOnFailureListener { e ->
+
                 binding.progressBar.visibility = View.GONE
                 binding.btnSaveProfile.isEnabled = true
 
-                Toast.makeText(this, "Ошибка: ${e.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this,
+                    "Ошибка: ${e.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
     }
+
+    private fun getCurrentProfileSnapshot(): String {
+
+        val gender = when (binding.radioGroupGender.checkedRadioButtonId) {
+            R.id.radioMale -> "Мужской"
+            R.id.radioFemale -> "Женский"
+            R.id.radioOther -> "Другое"
+            else -> ""
+        }
+
+        val pregnancy = when (binding.radioGroupPregnancy.checkedRadioButtonId) {
+            R.id.radioPregnantYes -> "true"
+            R.id.radioPregnantNo -> "false"
+            else -> ""
+        }
+
+        return listOf(
+            binding.editFullName.text.toString().trim(),
+            binding.editEmail.text.toString().trim(),
+            binding.autoCity.text.toString().trim(),
+            binding.editAge.text.toString().trim(),
+            gender,
+            pregnancy,
+            binding.editAllergies.text.toString().trim(),
+            binding.editChronic.text.toString().trim(),
+            binding.editCurrentMeds.text.toString().trim()
+        ).joinToString("|")
+    }
+
+    private fun hasUnsavedChanges(): Boolean {
+        return getCurrentProfileSnapshot() != originalProfileSnapshot
+    }
+
+    private fun handleBack() {
+
+        if (!profileAlreadyCompleted) {
+
+            Toast.makeText(
+                this,
+                "Сначала заполните профиль",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            return
+        }
+
+        if (hasUnsavedChanges()) {
+
+            Toast.makeText(
+                this,
+                "Сначала сохраните изменения",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            return
+        }
+
+        finish()
+    }
+
 }

@@ -37,6 +37,7 @@
         <activity android:name=".NewsArticleActivity" />
         <activity android:name=".RegisterActivity" android:exported="false" />
         <activity android:name=".LoginActivity" android:exported="false" />
+        <activity android:name=".ui.notification.NotificationsActivity"/>
         <activity android:name=".MainActivity" android:exported="false" />
         <activity android:name=".OnboardingActivity" android:exported="false" />
         <activity android:name=".CameraActivity" android:exported="false" />
