@@ -7,7 +7,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.saulifeapp.databinding.ActivityRegisterBinding
+import com.example.saulifeapp.ui.profile.EditProfileActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -34,7 +36,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onStart()
 
         if (auth.currentUser != null) {
-            goToHome()
+            checkUserProfile()
         }
     }
 
@@ -52,7 +54,7 @@ class RegisterActivity : AppCompatActivity() {
 
                 if (task.isSuccessful) {
                     Toast.makeText(this, "Регистрация успешна", Toast.LENGTH_SHORT).show()
-                    goToHome()
+                    goToProfileSetup()
                 } else {
                     Toast.makeText(
                         this,
@@ -99,5 +101,27 @@ class RegisterActivity : AppCompatActivity() {
     private fun goToHome() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()
+    }
+    private fun goToProfileSetup() {
+        startActivity(Intent(this, EditProfileActivity::class.java))
+        finish()
+    }
+
+    private fun checkUserProfile() {
+
+        val uid = auth.currentUser?.uid ?: return
+
+        FirebaseFirestore.getInstance()
+            .collection("users")
+            .document(uid)
+            .get()
+            .addOnSuccessListener { document ->
+
+                if (document.exists() && document.getBoolean("profileCompleted") == true) {
+                    goToHome()
+                } else {
+                    goToProfileSetup()
+                }
+            }
     }
 }

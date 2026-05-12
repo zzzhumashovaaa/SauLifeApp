@@ -7,12 +7,15 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.saulifeapp.databinding.ActivityLoginBinding
+import com.example.saulifeapp.ui.profile.EditProfileActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
 
         binding.btnLogin.setOnClickListener {
             loginUser()
@@ -34,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
 
         if (auth.currentUser != null) {
-            goToHome()
+            checkUserProfile()
         }
     }
 
@@ -48,18 +52,50 @@ class LoginActivity : AppCompatActivity() {
 
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
-                showLoading(false)
 
                 if (task.isSuccessful) {
                     Toast.makeText(this, "Вход выполнен", Toast.LENGTH_SHORT).show()
-                    goToHome()
+                    checkUserProfile()
                 } else {
+                    showLoading(false)
                     Toast.makeText(
                         this,
                         task.exception?.localizedMessage ?: "Ошибка входа",
                         Toast.LENGTH_LONG
                     ).show()
                 }
+            }
+    }
+
+    private fun checkUserProfile() {
+        val uid = auth.currentUser?.uid
+
+        if (uid == null) {
+            showLoading(false)
+            return
+        }
+
+        firestore.collection("users")
+            .document(uid)
+            .get()
+            .addOnSuccessListener { document ->
+                showLoading(false)
+
+                val profileCompleted = document.getBoolean("profileCompleted") == true
+
+                if (document.exists() && profileCompleted) {
+                    goToHome()
+                } else {
+                    goToProfileSetup()
+                }
+            }
+            .addOnFailureListener { e ->
+                showLoading(false)
+                Toast.makeText(
+                    this,
+                    "Ошибка проверки профиля: ${e.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
     }
 
@@ -97,7 +133,16 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun goToHome() {
-        startActivity(Intent(this, MainActivity::class.java))
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
+    }
+
+    private fun goToProfileSetup() {
+        val intent = Intent(this, EditProfileActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
         finish()
     }
 }

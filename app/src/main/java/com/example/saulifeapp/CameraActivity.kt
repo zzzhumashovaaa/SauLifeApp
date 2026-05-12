@@ -64,6 +64,8 @@ class CameraActivity : AppCompatActivity() {
 
         cameraExecutor = Executors.newSingleThreadExecutor()
 
+        setScanButtonEnabled(false)
+
         binding.btnBack.setOnClickListener {
             finish()
         }
@@ -107,7 +109,11 @@ class CameraActivity : AppCompatActivity() {
                     preview,
                     imageCapture
                 )
+
+                setScanButtonEnabled(true)
+
             } catch (e: Exception) {
+                setScanButtonEnabled(false)
                 Toast.makeText(this, "Camera start failed: ${e.message}", Toast.LENGTH_LONG).show()
             }
         }, ContextCompat.getMainExecutor(this))
@@ -115,6 +121,8 @@ class CameraActivity : AppCompatActivity() {
 
     private fun takePhotoAndAnalyze() {
         val localImageCapture = imageCapture ?: return
+
+        setLoadingState(true)
 
         val photoFile = File(
             cacheDir,
@@ -133,6 +141,7 @@ class CameraActivity : AppCompatActivity() {
                     if (bitmap != null) {
                         analyzeImageWithGemini(bitmap)
                     } else {
+                        setLoadingState(false)
                         Toast.makeText(
                             this@CameraActivity,
                             "Не удалось обработать фото",
@@ -142,6 +151,7 @@ class CameraActivity : AppCompatActivity() {
                 }
 
                 override fun onError(exception: ImageCaptureException) {
+                    setLoadingState(false)
                     Toast.makeText(
                         this@CameraActivity,
                         "Ошибка камеры: ${exception.message}",
@@ -153,12 +163,13 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun analyzeImageWithGemini(bitmap: Bitmap) {
-        binding.textResult.text = "AI анализирует изображение..."
+        setLoadingState(true)
 
         lifecycleScope.launch {
             val result = geminiVisionService.extractMedicineName(bitmap)
 
             val medicineName = result.getOrElse {
+                setLoadingState(false)
                 Toast.makeText(
                     this@CameraActivity,
                     "Не удалось распознать лекарство: ${it.message}",
@@ -167,12 +178,31 @@ class CameraActivity : AppCompatActivity() {
                 return@launch
             }
 
-            binding.textResult.text = medicineName
+            setLoadingState(false)
 
             val intent = Intent(this@CameraActivity, ScanResultActivity::class.java)
             intent.putExtra("ocr_text", medicineName)
             startActivity(intent)
         }
+    }
+
+    private fun setLoadingState(isLoading: Boolean) {
+        binding.btnCapture.isEnabled = !isLoading && imageCapture != null
+        binding.btnUpload.isEnabled = !isLoading
+
+        binding.btnCapture.text = if (isLoading) {
+            "Анализируем..."
+        } else {
+            "Сканировать"
+        }
+
+        binding.btnCapture.alpha = if (binding.btnCapture.isEnabled) 1f else 0.5f
+        binding.btnUpload.alpha = if (binding.btnUpload.isEnabled) 1f else 0.5f
+    }
+
+    private fun setScanButtonEnabled(enabled: Boolean) {
+        binding.btnCapture.isEnabled = enabled
+        binding.btnCapture.alpha = if (enabled) 1f else 0.5f
     }
 
     private fun uriToBitmap(uri: Uri): Bitmap? {

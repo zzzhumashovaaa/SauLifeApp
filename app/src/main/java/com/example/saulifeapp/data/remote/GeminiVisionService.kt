@@ -3,10 +3,11 @@ package com.example.saulifeapp.data.remote
 import android.graphics.Bitmap
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content
+import com.example.saulifeapp.BuildConfig
 
 class GeminiVisionService {
 
-    private val apiKey = "AIzaSyAlB_fnTPxplvDzolbcWO5PCBez_Y7HdUE"
+    private val apiKey = BuildConfig.GEMINI_API_KEY
 
     private val model = GenerativeModel(
         modelName = "gemini-2.5-flash",
